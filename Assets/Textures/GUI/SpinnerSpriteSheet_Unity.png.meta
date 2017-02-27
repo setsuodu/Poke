@@ -1,0 +1,535 @@
+fileFormatVersion: 2
+guid: 19fda77d590f1484b9962857226c4491
+timeCreated: 1480067780
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: SpinnerSpriteSheet_Unity_0
+    21300002: SpinnerSpriteSheet_Unity_1
+    21300004: SpinnerSpriteSheet_Unity_2
+    21300006: SpinnerSpriteSheet_Unity_3
+    21300008: SpinnerSpriteSheet_Unity_4
+    21300010: SpinnerSpriteSheet_Unity_5
+    21300012: SpinnerSpriteSheet_Unity_6
+    21300014: SpinnerSpriteSheet_Unity_7
+    21300016: SpinnerSpriteSheet_Unity_8
+    21300018: SpinnerSpriteSheet_Unity_9
+    21300020: SpinnerSpriteSheet_Unity_10
+    21300022: SpinnerSpriteSheet_Unity_11
+    21300024: SpinnerSpriteSheet_Unity_12
+    21300026: SpinnerSpriteSheet_Unity_13
+    21300028: SpinnerSpriteSheet_Unity_14
+    21300030: SpinnerSpriteSheet_Unity_15
+    21300032: SpinnerSpriteSheet_Unity_16
+    21300034: SpinnerSpriteSheet_Unity_17
+    21300036: SpinnerSpriteSheet_Unity_18
+    21300038: SpinnerSpriteSheet_Unity_19
+    21300040: SpinnerSpriteSheet_Unity_20
+    21300042: SpinnerSpriteSheet_Unity_21
+    21300044: SpinnerSpriteSheet_Unity_22
+    21300046: SpinnerSpriteSheet_Unity_23
+    21300048: SpinnerSpriteSheet_Unity_24
+    21300050: SpinnerSpriteSheet_Unity_25
+    21300052: SpinnerSpriteSheet_Unity_26
+    21300054: SpinnerSpriteSheet_Unity_27
+    21300056: SpinnerSpriteSheet_Unity_28
+    21300058: SpinnerSpriteSheet_Unity_29
+    21300060: SpinnerSpriteSheet_Unity_30
+    21300062: SpinnerSpriteSheet_Unity_31
+    21300064: SpinnerSpriteSheet_Unity_32
+    21300066: SpinnerSpriteSheet_Unity_33
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 429
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_1
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 429
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_2
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 429
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_3
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 431
+        width: 80
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_4
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 429
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_5
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 429
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_6
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 344
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_7
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 344
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_8
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 344
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_9
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 344
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_10
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 344
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_11
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 344
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_12
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 259
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_13
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 258
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_14
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 255
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_15
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 255
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_16
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 256
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_17
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 256
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 171
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_19
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 170
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_20
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 170
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_21
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 170
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_22
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 170
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_23
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 170
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_24
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 88
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_25
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 88
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_26
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 88
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_27
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 88
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_28
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 88
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_29
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 88
+        width: 75
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_30
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 3
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_31
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 3
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_32
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 3
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpinnerSpriteSheet_Unity_33
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 3
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
