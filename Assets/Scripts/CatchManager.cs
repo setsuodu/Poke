@@ -35,9 +35,9 @@ public class CatchManager : MonoBehaviour
         }
     }
 
-    public void RunAway()
+    public void RunAway(string sc)
     {
-        Application.LoadLevel("MapScene");
+        Application.LoadLevel(sc);
     }
 
     public void BagOpen()

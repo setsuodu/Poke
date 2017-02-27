@@ -111,9 +111,9 @@ public class ShareDemo : MonoBehaviour
         }
     }
 
-    public void LoadScene()
+    public void LoadScene(string sc)
     {
-        Application.LoadLevel("MapScene");
+        Application.LoadLevel(sc);
     }
 }
 

@@ -54,7 +54,7 @@ public class Spawn : MonoBehaviour
                 if (hit.transform.gameObject.tag == "target")
                 {
                     Debug.Log("pokemon");
-                    Application.LoadLevel("CatchScene");
+                    Application.LoadLevel("3.CatchScene");
                 }
             }
         }

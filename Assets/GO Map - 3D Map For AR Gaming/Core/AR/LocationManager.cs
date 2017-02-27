@@ -356,7 +356,7 @@ namespace GoMap
         IEnumerator LoadScene()
         {
             isBB = true;
-            AsyncOperation async = Application.LoadLevelAsync("CatchScene");
+            AsyncOperation async = Application.LoadLevelAsync("3.CatchScene");
             yield return async;
         }
     }

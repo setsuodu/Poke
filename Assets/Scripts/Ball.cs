@@ -23,7 +23,8 @@ public class Ball : MonoBehaviour
 	private bool isRotateLeft = true;
 	private bool isParticleFollowBall = false;
 	public Camera cam;
-	public float objectScale = 1.0f; 
+	public float objectScale = 1.0f;
+    public GameObject ballEffect;
 
 	#endregion
 	
@@ -119,7 +120,7 @@ public class Ball : MonoBehaviour
 				isInFloor = true;
 
 				colliderInfo.gameObject.SetActive (false);
-
+                //抓到了，执行以下效果
 				StartCoroutine (GotPokemonCoroutine (colliderInfo.gameObject));
 			}
 		}
@@ -196,12 +197,13 @@ public class Ball : MonoBehaviour
 	/// </summary>
 	/// <returns>The pokemon coroutine.</returns>
 	/// <param name="collidedObject">Collided object.</param>
-	IEnumerator GotPokemonCoroutine (GameObject collidedObject)
-	{
+	IEnumerator GotPokemonCoroutine (GameObject collidedObject) //抓到了，执行以下效果
+    {
 		yield return new WaitForSeconds (0.5f);
 		childBall.gameObject.SetActive (false);
-		collidedObject.SetActive (true);
-		Destroy (gameObject);
+        //collidedObject.SetActive (true);
+        Instantiate(ballEffect);
+        Destroy (gameObject);
 	}
 
 	/// <summary>
