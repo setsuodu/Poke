@@ -23,6 +23,18 @@ public class ShareDemo : MonoBehaviour
         Application.LoadLevel(sc);
     }
 
+    public GameObject privacyPanel;
+
+    public void ShowPrivacy()
+    {
+        privacyPanel.SetActive(true);
+    }
+
+    public void ClosePrivacy()
+    {
+        privacyPanel.SetActive(false);
+    }
+
     #region 分享
 
     public void OnShareClick()
