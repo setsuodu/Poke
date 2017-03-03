@@ -10,7 +10,7 @@ public class DialogueManager : MonoBehaviour
     public int count = 0;
     public AudioSource light;
 
-    void Start()
+    void OnEnable()
     {
         StartCoroutine(PlaySound(light, 3f));
     }

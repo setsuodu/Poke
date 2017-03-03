@@ -5,7 +5,7 @@ using System.Collections;
 public enum FadeType
 {
     ColorMode,
-    AlphaMode
+    AlphaMode,
 }
 
 public class UIFade : MonoBehaviour
@@ -14,6 +14,7 @@ public class UIFade : MonoBehaviour
     public FadeType fadeType = FadeType.ColorMode;
     public float delay, duration;
     public Color fromColor, toColor;
+    public bool isReset;
 
     //如果是按钮类，使用委托让其完全显示才interactalbe
     private delegate bool ListenValueHandler(float value);
@@ -37,6 +38,25 @@ public class UIFade : MonoBehaviour
         if (GetComponent<Button>())
         {
             GetComponent<Button>().interactable = false;
+        }
+    }
+
+    void OnEnable()
+    {
+        if (!isReset) return;
+        switch (fadeType)
+        {
+            case FadeType.ColorMode:
+                g.GetComponent<CanvasRenderer>().SetColor(fromColor);
+                break;
+            case FadeType.AlphaMode:
+                g.GetComponent<CanvasRenderer>().SetAlpha(0f); //该赋值必须在Start完成，不能Awake
+                break;
+        }
+
+        if (Application.isPlaying)
+        {
+            StartCoroutine(Fade(delay));
         }
     }
 
