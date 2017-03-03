@@ -11,14 +11,13 @@ public class AnimateTiledTexture : MonoBehaviour
     //the current frame to display
     private int index = 0;
 
-    void Start()
+    void OnEnable()
     {
         StartCoroutine(updateTiling());
 
         //set the tile size of the texture (in UV units), based on the rows and columns
         Vector2 size = new Vector2(1f / columns, 1f / rows);
         this.GetComponent<Image>().material.SetTextureScale("_MainTex", size);
-        
     }
 
     private IEnumerator updateTiling()

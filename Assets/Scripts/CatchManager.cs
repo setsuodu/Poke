@@ -37,6 +37,7 @@ public class CatchManager : MonoBehaviour
 
     public void RunAway(string sc)
     {
+        isARModel = false;
         Application.LoadLevel(sc);
     }
 

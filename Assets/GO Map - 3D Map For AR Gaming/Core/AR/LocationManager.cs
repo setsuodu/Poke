@@ -66,12 +66,8 @@ namespace GoMap
         public event OnLocationChanged onLocationChanged;
         public delegate void OnLocationChanged(Coordinates current);
 
-        public Material meetEnemy;
-
         void Start()
         {
-            meetEnemy.SetFloat("_Cutoff", 0);
-
             if (Application.isEditor || !Application.isMobilePlatform)
             {
                 useLocationServices = false;
@@ -319,45 +315,6 @@ namespace GoMap
                     onLocationChanged(currentLocation);
                 }
             }
-        }
-
-        private bool isAA, isBB = false;
-        private float timer = 0;
-        public Texture2D[] loadPatterns;
-        void Update()
-        {
-            if (isAA && !isBB)
-            {
-                if (timer >= 1)
-                {
-                    timer = 1;
-                    StartCoroutine(LoadScene());
-                    return;
-                }
-                else
-                {
-                    timer += Time.deltaTime;
-                    meetEnemy.SetFloat("_Cutoff", timer);
-                }
-            }
-            else
-            {
-                timer = 0;
-            }
-        }
-
-        public void Capture()
-        {
-            int t = UnityEngine.Random.Range(0, loadPatterns.Length);
-            meetEnemy.SetTexture("_TransitionTex", loadPatterns[t]);
-            isAA = true;
-        }
-
-        IEnumerator LoadScene()
-        {
-            isBB = true;
-            AsyncOperation async = Application.LoadLevelAsync("3.CatchScene");
-            yield return async;
         }
     }
 }

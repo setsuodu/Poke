@@ -12,7 +12,7 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(PlaySound(light, 2f));
+        StartCoroutine(PlaySound(light, 3f));
     }
 
     public void NextWord()

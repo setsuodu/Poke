@@ -18,23 +18,6 @@ public class ShareDemo : MonoBehaviour
         shareSdk.showUserHandler += GetUserInfoResultHandler; //用户信息事件
     }
 
-    public void LoadScene(string sc)
-    {
-        Application.LoadLevel(sc);
-    }
-
-    public GameObject privacyPanel;
-
-    public void ShowPrivacy()
-    {
-        privacyPanel.SetActive(true);
-    }
-
-    public void ClosePrivacy()
-    {
-        privacyPanel.SetActive(false);
-    }
-
     #region 分享
 
     public void OnShareClick()
