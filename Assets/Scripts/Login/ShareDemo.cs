@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Text;
 using System.Collections;
 using cn.sharesdk.unity3d; //导入ShareSDK
 
@@ -16,6 +17,18 @@ public class ShareDemo : MonoBehaviour
         shareSdk.shareHandler += ShareResultHandler; //分享回调事件
         shareSdk.authHandler += AuthResultHandler; //授权回调事件
         shareSdk.showUserHandler += GetUserInfoResultHandler; //用户信息事件
+    }
+
+    void QQReg()
+    {
+        PanelManager.instance.WaitingCtrl(true);
+
+        string regName = Md5Sum(qqUser.nickname);
+        Debug.Log(qqUser.nickname + " : " + regName);
+        //先注册
+        Register.instance.doRegister(regName, regName);
+        //再登录
+        Register.instance.doLogin(regName, regName);
     }
 
     #region 分享
@@ -103,17 +116,17 @@ public class ShareDemo : MonoBehaviour
                     //php数据库交互，如果数据库里没有，新建用户，→登陆。
                     //如果有，→登陆。
                     //ToDo it...
-
+                    QQReg();
                     break;
             }
         }
         else if (state == ResponseState.Fail)
         {
-            message.text = ("fail! error code = " + result["error_code"] + "; error msg = " + result["error_msg"]);
+            message.text = "fail! error code = " + result["error_code"] + "; error msg = " + result["error_msg"];
         }
         else if (state == ResponseState.Cancel)
         {
-            message.text = ("cancel !");
+            message.text = "cancel !";
         }
     }
 
@@ -143,5 +156,20 @@ public class ShareDemo : MonoBehaviour
         public string is_yellow_vip;
     }
 
+    //MD5加密
+    public static string Md5Sum(string strToEncrypt)
+    {
+        byte[] bs = UTF8Encoding.UTF8.GetBytes(strToEncrypt);
+        System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5CryptoServiceProvider.Create();
+
+        byte[] hashBytes = md5.ComputeHash(bs);
+
+        string hashString = "";
+        for (int i = 0; i < hashBytes.Length; i++)
+        {
+            hashString += System.Convert.ToString(hashBytes[i], 16).PadLeft(2, '0');
+        }
+        return hashString.PadLeft(32, '0');
+    }
     #endregion
 }

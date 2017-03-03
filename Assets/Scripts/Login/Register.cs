@@ -1,52 +1,54 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-public class Register : MonoBehaviour
+public class Register : UnitySingletonClass<Register>
 {
-    public string RegURL = "";
-    public string Pname = "";
-    public string Ppwd = "";
-    public bool isClicked;
-    //public string TempMessage = "--Stage--";
-
-    public Text m_content;
+    private string RegUrl, loginUrl;
 
     void Start()
     {
-        //RegURL = "http://127.0.0.1/checkreg.php";
-        RegURL = "http://www.setsuodu.com/checkreg.php";
+        RegUrl = "http://www.setsuodu.com/checkreg.php";
+        loginUrl = "http://www.setsuodu.com/login.php";
     }
 
-    void OnGUI()
+    IEnumerator RegisterData(string user, string pwd)
     {
-        Pname = GUI.TextField(new Rect(0, 0, 100, 50), Pname);
-        Ppwd = GUI.TextField(new Rect(0, 60, 100, 50), Ppwd);
+        WWWForm form = new WWWForm();
+        form.AddField("pname", user);
+        form.AddField("ppwd", pwd);
 
-        if (isClicked == false)
+        WWW www = new WWW(RegUrl, form);
+        yield return www;
+        if (www.text != null)
         {
-            if (GUI.Button(new Rect(0, 150, 100, 100), "Register"))
-            {
-                isClicked = true;
-                StartCoroutine(RegisterData());
-            }
+            Debug.Log("Register OK : " + www.text);
         }
     }
 
-    WWWForm form;
-    WWW download;
-
-    IEnumerator RegisterData()
+    public void doRegister(string user, string pwd)
     {
-        form = new WWWForm();
-        form.AddField("pname", Pname);
-        form.AddField("ppwd", Ppwd);
+        StartCoroutine(RegisterData(user, pwd));
+    }
 
-        download = new WWW(RegURL, form);
-        yield return download;
+    IEnumerator LoginData(string user, string pwd)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("pname", user);
+        form.AddField("ppwd", pwd);
 
-        Debug.Log("OK - - " + download.text);
-        m_content.text = download.text;
+        WWW www = new WWW(loginUrl, form);
+        yield return www;
+        Debug.Log("Login OK : " + www.text);
+        if (www.text == "LoginRight")
+        {
+            yield return new WaitForSeconds(2f);
+            PanelManager.instance.dialogueCtrl();
+        }
+    }
+
+    public void doLogin(string user, string pwd)
+    {
+        StartCoroutine(LoginData(user, pwd));
     }
 }

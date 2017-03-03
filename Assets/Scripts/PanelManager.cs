@@ -2,27 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PanelManager : MonoBehaviour
+public class PanelManager : UnitySingletonClass<PanelManager>
 {
+    public GameObject loginPanel, watingPanel, loadingPanel, privacyPanel, dialoguePanel;
+
     public void LoadScene(string sc)
     {
         Application.LoadLevel(sc);
     }
 
-    public GameObject loginPanel, watingPanel, loadingPanel, privacyPanel, dialoguePanel;
-
-    public void WaitingCtrl()
+    public void WaitingCtrl(bool isStart)
     {
-        loginPanel.active = !loginPanel.active;
-        watingPanel.active = !watingPanel.active;
-        if (!loginPanel.active && watingPanel.active)
-        {
-            Debug.Log("Now");
-        }
+        loginPanel.active = !isStart;
+        watingPanel.active = isStart;
     }
 
     public void PrivacyCtrl()
     {
         privacyPanel.active = !privacyPanel.active;
+    }
+
+    public void dialogueCtrl()
+    {
+        dialoguePanel.active = !dialoguePanel.active;
     }
 }
