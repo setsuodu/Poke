@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class CatchManager : MonoBehaviour
 {
     public GameObject BagView;
+    public GameObject SwitchFX;
     public Sprite[] ARMode = new Sprite[2];
     public Image ARModeImage;
     private bool isARModel = false;
@@ -25,7 +26,10 @@ public class CatchManager : MonoBehaviour
             ARModeImage.sprite = ARMode[0];
             gyroController.DetachGyro();
             cameraAsBackground.videoTexture(false);
-
+            //切回普通模式，创建特效
+            GameObject fx = Instantiate<GameObject>(SwitchFX);
+            fx.transform.SetParent(Camera.main.transform);
+            Destroy(fx, 2f);
         }
         else
         {
