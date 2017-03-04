@@ -89,7 +89,7 @@ ModelImporter:
     400078: ToesEnd_R
     400080: Wrist_L
     400082: Wrist_R
-    7400000: Take 001
+    7400000: Pikachu_attack
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -111,7 +111,119 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Pikachu_attack
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: DeformationSystem
+        weight: 1
+      - path: DeformationSystem/Root_M
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_L/Knee_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_L/Knee_L/Ankle_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_L/Knee_L/Ankle_L/Toes_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_L/Knee_L/Ankle_L/Toes_L/ToesEnd_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_R/Knee_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_R/Knee_R/Ankle_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_R/Knee_R/Ankle_R/Toes_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_R/Knee_R/Ankle_R/Toes_R/ToesEnd_R
+        weight: 1
+      - path: DeformationSystem/Root_M/joint2_M
+        weight: 1
+      - path: DeformationSystem/Root_M/joint2_M/joint3_M
+        weight: 1
+      - path: DeformationSystem/Root_M/joint2_M/joint3_M/joint4_M
+        weight: 1
+      - path: DeformationSystem/Root_M/joint2_M/joint3_M/joint4_M/joint5_M
+        weight: 1
+      - path: DeformationSystem/Root_M/joint2_M/joint3_M/joint4_M/joint5_M/joint6_M
+        weight: 1
+      - path: DeformationSystem/Root_M/joint2_M/joint3_M/joint4_M/joint5_M/joint6_M/joint7_M
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/HeadEnd_M
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/Jaw_M
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/Jaw_M/JawEnd_M
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/joint9_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/joint9_L/joint8_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/joint9_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/joint9_R/joint8_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/nose
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_L/Shoulder_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/MiddleFinger1_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_R/Shoulder_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/MiddleFinger1_R
+        weight: 1
+      - path: Geometry
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -135,7 +247,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
   importAnimation: 1
-  copyAvatar: 0
+  copyAvatar: 1
   humanDescription:
     serializedVersion: 2
     human: []
@@ -151,8 +263,9 @@ ModelImporter:
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
-    skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 592e55437ea7add41ac19171ed35cc2a,
+    type: 3}
   animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
