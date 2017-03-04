@@ -11,27 +11,112 @@ ModelImporter:
     100006: polygon2
     100008: polygon3
     100010: polygon4
+    100012: Ankle_L
+    100014: Ankle_R
+    100016: Chest_M
+    100018: DeformationSystem
+    100020: Ear_L_0
+    100022: Ear_L_1
+    100024: Ear_R_0
+    100026: Ear_R_1
+    100028: Elbow_L
+    100030: Elbow_R
+    100032: Geometry
+    100034: Head_M
+    100036: HeadEnd_M
+    100038: Hip_L
+    100040: Hip_R
+    100042: Knee_L
+    100044: Knee_R
+    100046: MiddleFinger1_L
+    100048: MiddleFinger1_R
+    100050: Neck_M
+    100052: Nose
+    100054: pikachu_mesh
+    100056: Root_M
+    100058: Scapula_L
+    100060: Scapula_R
+    100062: Shoulder_L
+    100064: Shoulder_R
+    100066: Spine1_M
+    100068: tail_0
+    100070: tail_1
+    100072: tail_2
+    100074: tail_3
+    100076: tail_4
+    100078: tail_5
+    100080: Toes_L
+    100082: Toes_R
+    100084: ToesEnd_L
+    100086: ToesEnd_R
+    100088: Wrist_L
+    100090: Wrist_R
     400000: //RootNode
     400002: polygon0
     400004: polygon1
     400006: polygon2
     400008: polygon3
     400010: polygon4
+    400012: Ankle_L
+    400014: Ankle_R
+    400016: Chest_M
+    400018: DeformationSystem
+    400020: Ear_L_0
+    400022: Ear_L_1
+    400024: Ear_R_0
+    400026: Ear_R_1
+    400028: Elbow_L
+    400030: Elbow_R
+    400032: Geometry
+    400034: Head_M
+    400036: HeadEnd_M
+    400038: Hip_L
+    400040: Hip_R
+    400042: Knee_L
+    400044: Knee_R
+    400046: MiddleFinger1_L
+    400048: MiddleFinger1_R
+    400050: Neck_M
+    400052: Nose
+    400054: pikachu_mesh
+    400056: Root_M
+    400058: Scapula_L
+    400060: Scapula_R
+    400062: Shoulder_L
+    400064: Shoulder_R
+    400066: Spine1_M
+    400068: tail_0
+    400070: tail_1
+    400072: tail_2
+    400074: tail_3
+    400076: tail_4
+    400078: tail_5
+    400080: Toes_L
+    400082: Toes_R
+    400084: ToesEnd_L
+    400086: ToesEnd_R
+    400088: Wrist_L
+    400090: Wrist_R
     2300000: polygon0
     2300002: polygon1
     2300004: polygon2
     2300006: polygon3
     2300008: polygon4
+    2300010: pikachu_mesh
     3300000: polygon0
     3300002: polygon1
     3300004: polygon2
     3300006: polygon3
     3300008: polygon4
+    3300010: pikachu_mesh
     4300000: polygon0
     4300002: polygon1
     4300004: polygon2
     4300006: polygon3
     4300008: polygon4
+    4300010: pikachu_mesh
+    9500000: //RootNode
+    13700000: pikachu_mesh
   materials:
     importMaterials: 0
     materialName: 0
@@ -46,7 +131,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -78,6 +163,7 @@ ModelImporter:
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -88,9 +174,12 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

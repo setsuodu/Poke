@@ -1,0 +1,392 @@
+fileFormatVersion: 2
+guid: 27c5a87ae897d3842b7f77456f02ec67
+timeCreated: 1469079458
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Ankle_L
+    100002: Ankle_R
+    100004: back
+    100006: bottom
+    100008: Chest_M
+    100010: DeformationSystem
+    100012: Elbow_L
+    100014: Elbow_R
+    100016: Geometry
+    100018: Group
+    100020: Head_M
+    100022: HeadEnd_M
+    100024: Hip_L
+    100026: Hip_R
+    100028: Jaw_M
+    100030: JawEnd_M
+    100032: joint2_M
+    100034: joint3_M
+    100036: joint4_M
+    100038: joint5_M
+    100040: joint6_M
+    100042: joint7_M
+    100044: joint8_L
+    100046: joint8_R
+    100048: joint9_L
+    100050: joint9_R
+    100052: Knee_L
+    100054: Knee_R
+    100056: left
+    100058: Main
+    100060: MiddleFinger1_L
+    100062: MiddleFinger1_R
+    100064: //RootNode
+    100066: Neck_M
+    100068: Root_M
+    100070: Scapula_L
+    100072: Scapula_R
+    100074: Shoulder_L
+    100076: Shoulder_R
+    100078: Spine1_M
+    100080: Toes_L
+    100082: Toes_R
+    100084: ToesEnd_L
+    100086: ToesEnd_R
+    100088: Wrist_L
+    100090: Wrist_R
+    100092: Ankle
+    100094: Chest
+    100096: Elbow
+    100098: FitSkeleton
+    100100: Head
+    100102: HeadEnd
+    100104: Heel
+    100106: Hip
+    100108: Jaw
+    100110: JawEnd
+    100112: joint1
+    100114: joint2
+    100116: joint3
+    100118: joint4
+    100120: joint5
+    100122: joint6
+    100124: joint7
+    100126: joint8
+    100128: joint9
+    100130: Knee
+    100132: MiddleFinger1
+    100134: Neck
+    100136: Root
+    100138: Scapula
+    100140: Shoulder
+    100142: Spine1
+    100144: Toes
+    100146: ToesEnd
+    100148: transform1
+    100150: transform11
+    100152: transform2
+    100154: Wrist
+    100156: FKExtraRoot_M
+    100158: FKIKParentConstraintSpine_M
+    100160: FKIKSpine_M
+    100162: FKIKSystem
+    100164: FKOffsetRoot_M
+    100166: FKRoot_M
+    100168: FKSystem
+    100170: FKXRoot_M
+    100172: IKExtraSpine1_M
+    100174: IKExtraSpine2_M
+    100176: IKHandle
+    100178: IKJoints
+    100180: IKOffsetSpine1_M
+    100182: IKOffsetSpine2_M
+    100184: IKParentConstraintRoot_M
+    100186: IKRootConstraint
+    100188: IKScalerRoot_M
+    100190: IKSpine1_M
+    100192: IKSpine2_M
+    100194: IKSpRoot_M
+    100196: IKSpRootFollowOffset_M
+    100198: IKSpSpineOffset_M
+    100200: IKSystem
+    100202: IKXOffsetRoot_M
+    100204: IKXRoot_M
+    100206: MotionSystem
+    100208: nose
+    400000: Ankle_L
+    400002: Ankle_R
+    400004: back
+    400006: bottom
+    400008: Chest_M
+    400010: DeformationSystem
+    400012: Elbow_L
+    400014: Elbow_R
+    400016: Geometry
+    400018: Group
+    400020: Head_M
+    400022: HeadEnd_M
+    400024: Hip_L
+    400026: Hip_R
+    400028: Jaw_M
+    400030: JawEnd_M
+    400032: joint2_M
+    400034: joint3_M
+    400036: joint4_M
+    400038: joint5_M
+    400040: joint6_M
+    400042: joint7_M
+    400044: joint8_L
+    400046: joint8_R
+    400048: joint9_L
+    400050: joint9_R
+    400052: Knee_L
+    400054: Knee_R
+    400056: left
+    400058: Main
+    400060: MiddleFinger1_L
+    400062: MiddleFinger1_R
+    400064: //RootNode
+    400066: Neck_M
+    400068: Root_M
+    400070: Scapula_L
+    400072: Scapula_R
+    400074: Shoulder_L
+    400076: Shoulder_R
+    400078: Spine1_M
+    400080: Toes_L
+    400082: Toes_R
+    400084: ToesEnd_L
+    400086: ToesEnd_R
+    400088: Wrist_L
+    400090: Wrist_R
+    400092: Ankle
+    400094: Chest
+    400096: Elbow
+    400098: FitSkeleton
+    400100: Head
+    400102: HeadEnd
+    400104: Heel
+    400106: Hip
+    400108: Jaw
+    400110: JawEnd
+    400112: joint1
+    400114: joint2
+    400116: joint3
+    400118: joint4
+    400120: joint5
+    400122: joint6
+    400124: joint7
+    400126: joint8
+    400128: joint9
+    400130: Knee
+    400132: MiddleFinger1
+    400134: Neck
+    400136: Root
+    400138: Scapula
+    400140: Shoulder
+    400142: Spine1
+    400144: Toes
+    400146: ToesEnd
+    400148: transform1
+    400150: transform11
+    400152: transform2
+    400154: Wrist
+    400156: FKExtraRoot_M
+    400158: FKIKParentConstraintSpine_M
+    400160: FKIKSpine_M
+    400162: FKIKSystem
+    400164: FKOffsetRoot_M
+    400166: FKRoot_M
+    400168: FKSystem
+    400170: FKXRoot_M
+    400172: IKExtraSpine1_M
+    400174: IKExtraSpine2_M
+    400176: IKHandle
+    400178: IKJoints
+    400180: IKOffsetSpine1_M
+    400182: IKOffsetSpine2_M
+    400184: IKParentConstraintRoot_M
+    400186: IKRootConstraint
+    400188: IKScalerRoot_M
+    400190: IKSpine1_M
+    400192: IKSpine2_M
+    400194: IKSpRoot_M
+    400196: IKSpRootFollowOffset_M
+    400198: IKSpSpineOffset_M
+    400200: IKSystem
+    400202: IKXOffsetRoot_M
+    400204: IKXRoot_M
+    400206: MotionSystem
+    400208: nose
+    7400000: Monster_01_idle
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Monster_01_idle
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 75
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: DeformationSystem
+        weight: 1
+      - path: DeformationSystem/Root_M
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_L/Knee_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_L/Knee_L/Ankle_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_L/Knee_L/Ankle_L/Toes_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_L/Knee_L/Ankle_L/Toes_L/ToesEnd_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_R/Knee_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_R/Knee_R/Ankle_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_R/Knee_R/Ankle_R/Toes_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Hip_R/Knee_R/Ankle_R/Toes_R/ToesEnd_R
+        weight: 1
+      - path: DeformationSystem/Root_M/joint2_M
+        weight: 1
+      - path: DeformationSystem/Root_M/joint2_M/joint3_M
+        weight: 1
+      - path: DeformationSystem/Root_M/joint2_M/joint3_M/joint4_M
+        weight: 1
+      - path: DeformationSystem/Root_M/joint2_M/joint3_M/joint4_M/joint5_M
+        weight: 1
+      - path: DeformationSystem/Root_M/joint2_M/joint3_M/joint4_M/joint5_M/joint6_M
+        weight: 1
+      - path: DeformationSystem/Root_M/joint2_M/joint3_M/joint4_M/joint5_M/joint6_M/joint7_M
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/HeadEnd_M
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/Jaw_M
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/Jaw_M/JawEnd_M
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/joint9_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/joint9_L/joint8_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/joint9_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/joint9_R/joint8_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/nose
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_L/Shoulder_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_L/Shoulder_L/Elbow_L/Wrist_L/MiddleFinger1_L
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_R/Shoulder_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R
+        weight: 1
+      - path: DeformationSystem/Root_M/Spine1_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R/MiddleFinger1_R
+        weight: 1
+      - path: Geometry
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 9008b285689806e4096f9bec5db5bc2d,
+    type: 3}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -71,7 +71,7 @@ namespace cn.sharesdk.unity3d
 
 		public override void SetPlatformConfig (Hashtable configs) 
 		{
-			String json = MiniJSON.jsonEncode(configs);
+			String json = MiniJSON2.jsonEncode(configs);
 			__iosShareSDKRegisterAppAndSetPltformsConfig (_appKey, json);
 		}
 		
@@ -117,7 +117,7 @@ namespace cn.sharesdk.unity3d
 				{
 					platTypesArr.Add((int)type);
 				}
-				platTypesStr = MiniJSON.jsonEncode(platTypesArr.ToArray());
+				platTypesStr = MiniJSON2.jsonEncode(platTypesArr.ToArray());
 			}
 			__iosShareSDKOneKeyShare (reqID, platTypesStr, content.GetShareParamsStr(), _callbackObjectName);
 		}
@@ -132,7 +132,7 @@ namespace cn.sharesdk.unity3d
 				{
 					platTypesArr.Add((int)type);
 				}
-				platTypesStr = MiniJSON.jsonEncode(platTypesArr.ToArray());
+				platTypesStr = MiniJSON2.jsonEncode(platTypesArr.ToArray());
 			}
 			
 			__iosShareSDKShowShareMenu (reqID, platTypesStr, content.GetShareParamsStr(), x, y, _callbackObjectName);
@@ -146,7 +146,7 @@ namespace cn.sharesdk.unity3d
 
 		public override void ShareWithContentName (int reqId, PlatformType platform, string contentName, Hashtable customFields)
 		{
-			String customFieldsStr = MiniJSON.jsonEncode(customFields);
+			String customFieldsStr = MiniJSON2.jsonEncode(customFields);
 			__iosShareSDKShareWithContentName (reqId, (int)platform, contentName, customFieldsStr,  _callbackObjectName);
 		}
 
@@ -164,7 +164,7 @@ namespace cn.sharesdk.unity3d
 		{
 			//need modify,
 			string credStr = __iosShareSDKGetCredential((int)platform);
-			Hashtable authInfo = (Hashtable)MiniJSON.jsonDecode (credStr);
+			Hashtable authInfo = (Hashtable)MiniJSON2.jsonDecode (credStr);
 			return authInfo;
 		}
 		
