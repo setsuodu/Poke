@@ -1,0 +1,161 @@
+fileFormatVersion: 2
+guid: 923a0f040157fb7418b907a3a2f968a0
+timeCreated: 1488646877
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Ankle_L
+    100002: Ankle_R
+    100004: Chest_M
+    100006: DeformationSystem
+    100008: Elbow_L
+    100010: Elbow_R
+    100012: Geometry
+    100014: Head_M
+    100016: HeadEnd_M
+    100018: Hip_L
+    100020: Hip_R
+    100022: Jaw_M
+    100024: JawEnd_M
+    100026: joint2_M
+    100028: joint3_M
+    100030: joint4_M
+    100032: joint5_M
+    100034: joint6_M
+    100036: joint7_M
+    100038: joint8_L
+    100040: joint8_R
+    100042: joint9_L
+    100044: joint9_R
+    100046: Knee_L
+    100048: Knee_R
+    100050: MiddleFinger1_L
+    100052: MiddleFinger1_R
+    100054: //RootNode
+    100056: Neck_M
+    100058: nose
+    100060: Root_M
+    100062: Scapula_L
+    100064: Scapula_R
+    100066: Shoulder_L
+    100068: Shoulder_R
+    100070: Spine1_M
+    100072: Toes_L
+    100074: Toes_R
+    100076: ToesEnd_L
+    100078: ToesEnd_R
+    100080: Wrist_L
+    100082: Wrist_R
+    400000: Ankle_L
+    400002: Ankle_R
+    400004: Chest_M
+    400006: DeformationSystem
+    400008: Elbow_L
+    400010: Elbow_R
+    400012: Geometry
+    400014: Head_M
+    400016: HeadEnd_M
+    400018: Hip_L
+    400020: Hip_R
+    400022: Jaw_M
+    400024: JawEnd_M
+    400026: joint2_M
+    400028: joint3_M
+    400030: joint4_M
+    400032: joint5_M
+    400034: joint6_M
+    400036: joint7_M
+    400038: joint8_L
+    400040: joint8_R
+    400042: joint9_L
+    400044: joint9_R
+    400046: Knee_L
+    400048: Knee_R
+    400050: MiddleFinger1_L
+    400052: MiddleFinger1_R
+    400054: //RootNode
+    400056: Neck_M
+    400058: nose
+    400060: Root_M
+    400062: Scapula_L
+    400064: Scapula_R
+    400066: Shoulder_L
+    400068: Shoulder_R
+    400070: Spine1_M
+    400072: Toes_L
+    400074: Toes_R
+    400076: ToesEnd_L
+    400078: ToesEnd_R
+    400080: Wrist_L
+    400082: Wrist_R
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
