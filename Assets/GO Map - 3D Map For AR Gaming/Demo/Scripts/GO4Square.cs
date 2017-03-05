@@ -41,8 +41,9 @@ namespace GoMap {
 
 			if (lastQueryCenter == null || lastQueryCenter.DistanceFromPoint (currentLocation) >= queryRadius/1.5f) {
 				lastQueryCenter = currentLocation;
-				string url = baseUrl + "&ll=" + currentLocation.latitude + "," + currentLocation.longitude + "&radius=" + queryRadius+"&categoryId="+categoryID+"&oauth_token="+oauth_token;
-				StartCoroutine (LoadPlaces(url));
+				//string url = baseUrl + "&ll=" + currentLocation.latitude + "," + currentLocation.longitude + "&radius=" + queryRadius+"&categoryId="+categoryID+"&oauth_token="+oauth_token;
+                string url = baseUrl + "&ll=" + currentLocation.latitude.ToString("f6") + "," + currentLocation.longitude.ToString("f6") + "&query=" + "coffee" + "intent=" + "checkin" + "&client_id=" + categoryID + "&client_secret=" + oauth_token;
+                StartCoroutine(LoadPlaces(url));
 			}
 		}
 
@@ -52,8 +53,9 @@ namespace GoMap {
 
 			var www = new WWW(url);
 			yield return www;
+            Debug.Log("get json " + www.text);
 
-			ParseJob job = new ParseJob();
+            ParseJob job = new ParseJob();
 			job.InData = www.text;
 			job.Start();
 
@@ -84,6 +86,7 @@ namespace GoMap {
 			}
 		}
 
+        /*
         public GameObject obj;
         public double lat, lng, alt;
 
@@ -93,5 +96,6 @@ namespace GoMap {
             Coordinates coordinates = new Coordinates(lat, lng, alt);
             obj.transform.position = coordinates.convertCoordinateToVector();
         }
+        */
     }
 }
