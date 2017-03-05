@@ -81,8 +81,17 @@ namespace GoMap {
 				go.transform.localPosition = coordinates.convertCoordinateToVector(0);
 				go.transform.parent = transform;
 				go.name = (string)result["name"];
-
 			}
 		}
-	}
+
+        public GameObject obj;
+        public double lat, lng, alt;
+
+        [ContextMenu("CoordObj")]
+        void CoordObj()
+        {
+            Coordinates coordinates = new Coordinates(lat, lng, alt);
+            obj.transform.position = coordinates.convertCoordinateToVector();
+        }
+    }
 }

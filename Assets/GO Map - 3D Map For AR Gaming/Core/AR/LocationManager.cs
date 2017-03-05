@@ -5,316 +5,298 @@ using System.Collections;
 using System;
 using UnityEngine.UI;
 
-namespace GoMap
-{
-    public class LocationManager : MonoBehaviour
-    {
-        public enum DemoLocation
-        {
-            NewYork,
-            Rome,
-            NewYork2,
-            Venice,
-            SanFrancisco,
-            Berlin,
-            Dubai,
-            NoGPSTest,
-            Custom
-        };
+namespace GoMap {
+	
+	public class LocationManager : MonoBehaviour {
 
-        public enum MotionPreset
-        {
-            Walk,
-            Bike,
-            Car
-        };
+		public enum DemoLocation{
+			NewYork, 
+			Rome,
+			NewYork2,
+			Venice,
+			SanFrancisco,
+			Berlin,
+			Dubai,
+			NoGPSTest,
+			Custom
+		};
 
-        public bool useLocationServices;
+		public enum MotionPreset{
+			Walk, 
+			Bike,
+			Car
+		};
 
-        public int zoomLevel = 17;
-        public DemoLocation demoLocation;
-        public Coordinates demo_CenterWorldCoordinates;
-        [HideInInspector]
-        public Vector2 demo_CenterWorldTile;
+		public bool useLocationServices;
 
-        //	[HideInInspector]
-        public Coordinates currentLocation;
+		public int zoomLevel = 17;
+		public DemoLocation demoLocation;
+		public Coordinates demo_CenterWorldCoordinates;
+		[HideInInspector]
+		public Vector2 demo_CenterWorldTile;
 
-        [HideInInspector]
-        public static Coordinates CenterWorldCoordinates;
+	//	[HideInInspector]
+		public Coordinates currentLocation;
 
-        public float desiredAccuracy = 50;
-        public float updateDistance = 0.1f;
+		[HideInInspector]
+		public static Coordinates CenterWorldCoordinates;
 
-        [HideInInspector]
-        public float updateEvery = 1 / 1000f;
+		public float desiredAccuracy = 50;
+		public float updateDistance = 0.1f;
 
-        public MotionPreset simulateMotion = MotionPreset.Walk;
-        float demo_WASDspeed = 20;
+		[HideInInspector]
+		public float updateEvery = 1 / 1000f;
 
-        public bool useBannerInsideEditor;
-        public GameObject banner;
-        public Text bannerText;
+		public MotionPreset simulateMotion = MotionPreset.Walk;
+		float demo_WASDspeed = 20;
 
-        public static bool IsOriginSet;
-        public static bool UseLocationServices;
-        public static LocationServiceStatus status;
+		public bool useBannerInsideEditor;
+		public GameObject banner;
+		public Text bannerText;
 
-        public event OnOriginSet onOriginSet;
-        public delegate void OnOriginSet(Coordinates origin);
+		public static bool IsOriginSet;
+		public static bool UseLocationServices;
+		public static LocationServiceStatus status;
 
-        public event OnLocationChanged onLocationChanged;
-        public delegate void OnLocationChanged(Coordinates current);
+		public event OnOriginSet onOriginSet;
+		public delegate void OnOriginSet(Coordinates origin);
 
-        void Start()
-        {
-            if (Application.isEditor || !Application.isMobilePlatform)
-            {
-                useLocationServices = false;
-            }
+		public event OnLocationChanged onLocationChanged;
+		public delegate void OnLocationChanged(Coordinates current);
 
-            if (useLocationServices)
-            {
-                Input.location.Start(desiredAccuracy, updateDistance);
-            }
-            else
-            { //Demo origin
+		// Use this for initialization
+		void Start () {
+		
+			if (Application.isEditor || !Application.isMobilePlatform) {
+				useLocationServices = false;
+			}
 
-                LoadDemoLocation();
-            }
+			if (useLocationServices) {
+				Input.location.Start (desiredAccuracy, updateDistance);
+			} else { //Demo origin
 
-            UseLocationServices = useLocationServices;
+				LoadDemoLocation ();
+			}
 
-            StartCoroutine(LocationCheck(updateEvery));
+			UseLocationServices = useLocationServices;
 
-            StartCoroutine(LateStart(0.01f));
-        }
+			StartCoroutine (LocationCheck(updateEvery));
 
-        public void LoadDemoLocation()
-        {
-            switch (demoLocation)
-            {
-                case DemoLocation.NewYork:
-                    demo_CenterWorldCoordinates = currentLocation = new Coordinates(40.783435, -73.966249, 0);
-                    break;
-                case DemoLocation.NewYork2:
-                    demo_CenterWorldCoordinates = currentLocation = new Coordinates(40.70193632375534, -74.01628977185595, 0);
-                    break;
-                case DemoLocation.Rome:
-                    demo_CenterWorldCoordinates = currentLocation = new Coordinates(41.910509366663945, 12.476284503936768, 0);
-                    break;
-                case DemoLocation.Venice:
-                    demo_CenterWorldCoordinates = currentLocation = new Coordinates(45.433184, 12.336831, 0);
-                    break;
-                case DemoLocation.SanFrancisco:
-                    demo_CenterWorldCoordinates = currentLocation = new Coordinates(37.80724101305343, -122.42086887359619, 0);
-                    break;
-                case DemoLocation.Berlin:
-                    demo_CenterWorldCoordinates = currentLocation = new Coordinates(52.521123, 13.409396, 0);
-                    break;
-                case DemoLocation.Dubai:
-                    demo_CenterWorldCoordinates = currentLocation = new Coordinates(25.197469, 55.274366, 0);
-                    break;
-                case DemoLocation.NoGPSTest:
-                    currentLocation = demo_CenterWorldCoordinates = null;
-                    return;
+			StartCoroutine(LateStart(0.01f));
 
-                case DemoLocation.Custom:
-                    currentLocation = demo_CenterWorldCoordinates;
-                    break;
-                default:
-                    break;
-            }
-            SetOrigin(demo_CenterWorldCoordinates);
-        }
+		}
 
-        IEnumerator LateStart(float waitTime)
-        {
-            yield return new WaitForSeconds(waitTime);
-            if (!useLocationServices && demoLocation != DemoLocation.NoGPSTest)
-            {
-                adjust(); //This adjusts the current location just after the initialization
-            }
-        }
+		public void LoadDemoLocation () {
 
-        IEnumerator LocationCheck(float repeatTime)
-        {
-            while (true)
-            {
-                status = Input.location.status;
+			switch (demoLocation)
+			{
+			case DemoLocation.NewYork:
+				demo_CenterWorldCoordinates = currentLocation = new Coordinates (40.783435,-73.966249,0);
+				break;
+			case DemoLocation.NewYork2:
+				demo_CenterWorldCoordinates = currentLocation = new Coordinates (40.70193632375534,-74.01628977185595,0);
+				break;
+			case DemoLocation.Rome:
+				demo_CenterWorldCoordinates = currentLocation = new Coordinates (41.910509366663945,12.476284503936768,0);
+				break;
+			case DemoLocation.Venice:
+				demo_CenterWorldCoordinates = currentLocation = new Coordinates (45.433184, 12.336831,0);
+				break;
+			case DemoLocation.SanFrancisco:
+				demo_CenterWorldCoordinates = currentLocation = new Coordinates (37.80724101305343, -122.42086887359619,0);
+				break;
+			case DemoLocation.Berlin:
+				demo_CenterWorldCoordinates = currentLocation = new Coordinates (52.521123, 13.409396,0);
+				break;
+			case DemoLocation.Dubai:
+				demo_CenterWorldCoordinates = currentLocation = new Coordinates (25.197469, 55.274366,0);
+				break;
+			case DemoLocation.NoGPSTest:
+				currentLocation = demo_CenterWorldCoordinates = null;
+				return;
 
-                if (!useLocationServices)
-                {
-                    if (Application.isEditor && useBannerInsideEditor)
-                        showBannerWithText(true, "GPS is disabled");
-                    yield return new WaitForSeconds(repeatTime);
-                }
-                else if (status == LocationServiceStatus.Failed)
-                {
-                    showBannerWithText(true, "GPS signal not found");
-                    yield return new WaitForSeconds(repeatTime);
-                }
-                else if (status == LocationServiceStatus.Stopped)
-                {
-                    showBannerWithText(true, "GPS signal not found");
-                    yield return new WaitForSeconds(repeatTime);
-                }
-                else if (status == LocationServiceStatus.Initializing)
-                {
-                    showBannerWithText(true, "GPS signal not found");
-                    yield return new WaitForSeconds(repeatTime);
-                }
-                else if (status == LocationServiceStatus.Running)
-                {
+			case DemoLocation.Custom:
+				currentLocation = demo_CenterWorldCoordinates;
+				break;
+			default:
+				break;
+			}
 
-                    if (Input.location.lastData.horizontalAccuracy > desiredAccuracy)
-                    {
-                        showBannerWithText(true, "GPS signal is weak");
-                        yield return new WaitForSeconds(repeatTime);
-                    }
-                    else
-                    {
-                        showBannerWithText(false, "GPS signal ok!");
+			SetOrigin(demo_CenterWorldCoordinates);
 
-                        if (!IsOriginSet)
-                        {
-                            SetOrigin(new Coordinates(Input.location.lastData));
-                        }
-                        LocationInfo info = Input.location.lastData;
-                        if (info.latitude != currentLocation.latitude || info.longitude != currentLocation.longitude)
-                        {
-                            currentLocation.updateLocation(Input.location.lastData);
-                            if (onLocationChanged != null)
-                            {
-                                onLocationChanged(currentLocation);
-                            }
-                        }
-                    }
-                }
+		}
+			
+		IEnumerator LateStart(float waitTime)
+		{
+			yield return new WaitForSeconds(waitTime);
+			if (!useLocationServices && demoLocation != DemoLocation.NoGPSTest) {
+				adjust (); //This adjusts the current location just after the initialization
+			}
+		
+		}
+			
+		IEnumerator LocationCheck (float repeatTime) {
 
-                if (!useLocationServices && Application.isEditor && demoLocation != DemoLocation.NoGPSTest)
-                {
-                    changeLocationWASD();
-                }
+			while (true) {
+				
+				status = Input.location.status;
 
-                yield return new WaitForSeconds(repeatTime);
-            }
-        }
+				if (!useLocationServices) {
+					if (Application.isEditor && useBannerInsideEditor)
+						showBannerWithText (true, "GPS is disabled");
+					yield return new WaitForSeconds(repeatTime);
+				}
+				else if (status == LocationServiceStatus.Failed) {
+					showBannerWithText (true, "GPS signal not found");
+					yield return new WaitForSeconds(repeatTime);
+				}
+				else if (status == LocationServiceStatus.Stopped) {
+					showBannerWithText (true, "GPS signal not found");
+					yield return new WaitForSeconds(repeatTime);
+				}
+				else if (status == LocationServiceStatus.Initializing) {
+					showBannerWithText (true, "GPS signal not found");
+					yield return new WaitForSeconds(repeatTime);
+				} 
+				else if (status == LocationServiceStatus.Running) {
 
-        void SetOrigin(Coordinates coords)
-        {
-            IsOriginSet = true;
-            CenterWorldCoordinates = coords.tileCenter(zoomLevel);
-            demo_CenterWorldTile = coords.tileCoordinates(zoomLevel);
-            Coordinates.setWorldOrigin(CenterWorldCoordinates);
-            if (onOriginSet != null)
-            {
-                onOriginSet(CenterWorldCoordinates);
-            }
-        }
+					if (Input.location.lastData.horizontalAccuracy > desiredAccuracy) {
+						showBannerWithText (true, "GPS signal is weak");
+						yield return new WaitForSeconds (repeatTime);
+					} else {
+						showBannerWithText (false, "GPS signal ok!");
 
-        ////UI
-        void showBannerWithText(bool show, string text)
-        {
+						if (!IsOriginSet) {
+							SetOrigin (new Coordinates (Input.location.lastData));
+						}
+						LocationInfo info = Input.location.lastData;
+						if (info.latitude != currentLocation.latitude || info.longitude != currentLocation.longitude) {
+							currentLocation.updateLocation (Input.location.lastData);
+							if (onLocationChanged != null) {
+								onLocationChanged (currentLocation);
+							}
+						}
+					}
+				}
 
-            if (banner == null || bannerText == null)
-            {
-                return;
-            }
+				if (!useLocationServices && Application.isEditor && demoLocation != DemoLocation.NoGPSTest) {
+					changeLocationWASD ();
+				}
 
-            bannerText.text = text;
+				yield return new WaitForSeconds(repeatTime);
 
-            RectTransform bannerRect = banner.GetComponent<RectTransform>();
-            bool alreadyOpen = bannerRect.anchoredPosition.y != bannerRect.sizeDelta.y;
+			}
+		}
 
-            if (show != alreadyOpen)
-            {
-                StartCoroutine(Slide(show, 1));
-            }
-        }
+		void SetOrigin(Coordinates coords) {
+			IsOriginSet = true;
+			CenterWorldCoordinates = coords.tileCenter(zoomLevel);
+			demo_CenterWorldTile = coords.tileCoordinates(zoomLevel);
+			Coordinates.setWorldOrigin (CenterWorldCoordinates);
+			if (onOriginSet != null) {
+				onOriginSet (CenterWorldCoordinates);
+			}
+		}
 
-        private IEnumerator Slide(bool show, float time)
-        {
-//		    Debug.Log ("Toggle banner");
-            Vector2 newPosition;
-            RectTransform bannerRect = banner.GetComponent<RectTransform>();
+		////UI
+		void showBannerWithText(bool show, string text) {
 
-            if (show)
-            {//Open
-                newPosition = new Vector2(bannerRect.anchoredPosition.x, 0);
-            }
-            else
-            { //Close
-                newPosition = new Vector2(bannerRect.anchoredPosition.x, bannerRect.sizeDelta.y);
-            }
+			if (banner == null || bannerText == null) {
+				return;
+			}
 
-            float elapsedTime = 0;
-            while (elapsedTime < time)
-            {
-                bannerRect.anchoredPosition = Vector2.Lerp(bannerRect.anchoredPosition, newPosition, (elapsedTime / time));
-                elapsedTime += Time.deltaTime;
-                yield return new WaitForEndOfFrame();
-            }
-        }
+			bannerText.text = text;
 
-        ////EDITOR
-        void adjust()
-        {
-            Vector3 current = currentLocation.convertCoordinateToVector();
-            Vector3 v = current;
-            currentLocation = Coordinates.convertVectorToCoordinates(v);
-            v = current + new Vector3(0, 0, 0.4f);
-            currentLocation = Coordinates.convertVectorToCoordinates(v);
-            if (onLocationChanged != null)
-            {
-                onLocationChanged(currentLocation);
-            }
-        }
+			RectTransform bannerRect = banner.GetComponent<RectTransform> ();
+			bool alreadyOpen = bannerRect.anchoredPosition.y != bannerRect.sizeDelta.y;
 
-        void changeLocationWASD()
-        {
-            switch (simulateMotion)
-            {
-                case MotionPreset.Car:
-                    demo_WASDspeed = 4;
-                    break;
-                case MotionPreset.Bike:
-                    demo_WASDspeed = 2;
-                    break;
-                case MotionPreset.Walk:
-                    demo_WASDspeed = 0.4f;
-                    break;
-                default:
-                    break;
-            }
-            Vector3 current = currentLocation.convertCoordinateToVector();
-            Vector3 v = current;
+			if (show != alreadyOpen) {
+				StartCoroutine (Slide (show, 1));
+			}
 
-            if (Input.GetKey(KeyCode.W))
-            {
-                v = current + new Vector3(0, 0, demo_WASDspeed);
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                v = current + new Vector3(0, 0, -demo_WASDspeed);
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                v = current + new Vector3(-demo_WASDspeed, 0, 0);
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                v = current + new Vector3(demo_WASDspeed, 0, 0);
-            }
+		}
 
-            if (v != current)
-            {
-                currentLocation = Coordinates.convertVectorToCoordinates(v);
-                if (onLocationChanged != null)
-                {
-                    onLocationChanged(currentLocation);
-                }
-            }
-        }
-    }
+		private IEnumerator Slide(bool show, float time) {
+
+//			Debug.Log ("Toggle banner");
+
+			Vector2 newPosition;
+			RectTransform bannerRect = banner.GetComponent<RectTransform> ();
+
+			if (show) {//Open
+				newPosition = new Vector2 (bannerRect.anchoredPosition.x, 0);
+			} else { //Close
+				newPosition = new Vector2 (bannerRect.anchoredPosition.x, bannerRect.sizeDelta.y);
+			} 
+
+			float elapsedTime = 0;
+			while (elapsedTime < time)
+			{
+				bannerRect.anchoredPosition = Vector2.Lerp(bannerRect.anchoredPosition, newPosition, (elapsedTime / time));
+				elapsedTime += Time.deltaTime;
+				yield return new WaitForEndOfFrame();
+			}
+				
+		}
+			
+		////EDITOR
+		/// 
+		/// 
+		/// 
+		/// 
+
+		void adjust () {
+		
+			Vector3 current = currentLocation.convertCoordinateToVector ();
+			Vector3 v = current;
+			currentLocation = Coordinates.convertVectorToCoordinates (v);
+			v = current + new Vector3(0, 0 , 0.4f);
+			currentLocation = Coordinates.convertVectorToCoordinates (v);
+			if (onLocationChanged != null) {
+				onLocationChanged (currentLocation);
+			}
+		}
+
+		void changeLocationWASD (){
+
+			switch (simulateMotion)
+			{
+			case MotionPreset.Car:
+				demo_WASDspeed = 4;
+				break;
+			case MotionPreset.Bike:
+				demo_WASDspeed = 2;
+				break;
+			case MotionPreset.Walk:
+				demo_WASDspeed = 0.4f;
+				break;
+			default:
+				break;
+			}
+
+
+			Vector3 current = currentLocation.convertCoordinateToVector ();
+			Vector3 v = current;
+
+			if (Input.GetKey (KeyCode.W)){
+				v = current + new Vector3(0, 0 , demo_WASDspeed);
+			}
+			if (Input.GetKey (KeyCode.S)){
+				v = current + new Vector3(0, 0 , -demo_WASDspeed);
+			}
+			if (Input.GetKey (KeyCode.A)){
+				v = current + new Vector3(-demo_WASDspeed, 0 , 0);
+			}
+			if (Input.GetKey (KeyCode.D)){
+				v = current + new Vector3(demo_WASDspeed, 0 , 0);
+			}
+
+			if (v != current) {
+				currentLocation = Coordinates.convertVectorToCoordinates (v);
+				if (onLocationChanged != null) {
+					onLocationChanged (currentLocation);
+				}
+			}
+		}
+	}
 }

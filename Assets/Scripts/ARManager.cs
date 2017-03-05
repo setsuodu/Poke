@@ -57,7 +57,7 @@ public class ARManager : MonoBehaviour
             newPlace.transform.parent = transform;
             newPlace.GetComponent<SpawnManager>().demo_CenterWorldCoordinates = new Coordinates(places[i].Latitude, places[i].Longitude, 0);
             newPlace.GetComponent<SpawnManager>().currentLocation = new Coordinates(places[i].Latitude, places[i].Longitude, 0);
-            newPlace.GetComponent<MovePokemon>().spawnLocation = new Coordinates(places[i].Latitude, places[i].Longitude, 0);
+            //newPlace.GetComponent<MovePokemon>().spawnLocation = new Coordinates(places[i].Latitude, places[i].Longitude, 0);
             
             newPlace.transform.LookAt(Camera.main.transform.parent);
             //newPlace.transform.Rotate(new Vector3(0f, 0f, 0f));
