@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode] //will case unity crash
 public class SimpleBlit : MonoBehaviour
 {
     public Material TransitionMaterial;

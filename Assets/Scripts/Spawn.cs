@@ -7,15 +7,6 @@ using LitJson;
 
 public class Spawn : MonoBehaviour
 {
-    /*
-    [Serializable]
-    public class Character
-    {
-        public string ID;
-        public Vector3 SpawnLocation;
-    }
-    public List<Character> SpawnList;
-    */
     public List<GameObject> SpawnList;
     public List<Vector3> SpawnLocation;
 
@@ -33,33 +24,7 @@ public class Spawn : MonoBehaviour
     }
 
     private float time, lastTime;
-    /*
-    void Update()
-    {
-        time = Time.fixedTime;
-        if (time - lastTime == 2)
-        {
-            Debug.Log("hello");
-            lastTime = time;
-            StartCoroutine(GetJson());
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform.gameObject.tag == "target")
-                {
-                    Debug.Log("pokemon");
-                    Application.LoadLevel("3.CatchScene");
-                }
-            }
-        }
-    }
-    */
+    
     IEnumerator GetJson()
     {
         WWW www = new WWW("http://www.setsuodu.com/json/spawn.json");
@@ -127,6 +92,7 @@ public class Spawn : MonoBehaviour
         meetEnemy.SetTexture("_TransitionTex", loadPatterns[t]);
         isAA = true;
     }
+
     IEnumerator LoadScene()
     {
         isBB = true;
