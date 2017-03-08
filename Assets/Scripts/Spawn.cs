@@ -7,8 +7,10 @@ using LitJson;
 
 public class Spawn : MonoBehaviour
 {
+    #region Spawn Pokemon
     public List<GameObject> SpawnList;
     public List<Vector3> SpawnLocation;
+    private float time, lastTime;
 
     [ContextMenu("Spawn")]
     public void SpawnPokemon()
@@ -23,8 +25,6 @@ public class Spawn : MonoBehaviour
         }
     }
 
-    private float time, lastTime;
-    
     IEnumerator GetJson()
     {
         WWW www = new WWW("http://www.setsuodu.com/json/spawn.json");
@@ -53,50 +53,6 @@ public class Spawn : MonoBehaviour
         string[] s = name.Split(',');
         return new Vector3(float.Parse(s[0]), float.Parse(s[1]), float.Parse(s[2]));
     }
+    #endregion
 
-    private bool isAA, isBB = false;
-    private float timer = 0;
-    public Texture2D[] loadPatterns;
-    public Material meetEnemy;
-
-    void Start()
-    {
-        meetEnemy.SetFloat("_Cutoff", 0);
-    }
-
-    void Update()
-    {
-        if (isAA && !isBB)
-        {
-            if (timer >= 1)
-            {
-                timer = 1;
-                StartCoroutine(LoadScene());
-                return;
-            }
-            else
-            {
-                timer += Time.deltaTime;
-                meetEnemy.SetFloat("_Cutoff", timer);
-            }
-        }
-        else
-        {
-            timer = 0;
-        }
-    }
-
-    public void Capture()
-    {
-        int t = UnityEngine.Random.Range(0, loadPatterns.Length);
-        meetEnemy.SetTexture("_TransitionTex", loadPatterns[t]);
-        isAA = true;
-    }
-
-    IEnumerator LoadScene()
-    {
-        isBB = true;
-        AsyncOperation async = Application.LoadLevelAsync("2.CatchScene");
-        yield return async;
-    }
 }
