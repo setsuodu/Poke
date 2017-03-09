@@ -49,11 +49,11 @@ namespace GoMap {
 
 		public IEnumerator LoadPlaces (string url) { //Request the API
 
-			Debug.Log ("GO4Square URL: " + url);
+			//Debug.Log ("GO4Square URL: " + url);
 
 			var www = new WWW(url);
 			yield return www;
-            Debug.Log("get json " + www.text);
+            //Debug.Log("get json " + www.text);
 
             ParseJob job = new ParseJob();
 			job.InData = www.text;
