@@ -8,6 +8,7 @@ using LitJson;
 public class Spawn : MonoBehaviour
 {
     #region Spawn Pokemon
+
     public List<GameObject> SpawnList;
     public List<Vector3> SpawnLocation;
     private float time, lastTime;
@@ -53,6 +54,6 @@ public class Spawn : MonoBehaviour
         string[] s = name.Split(',');
         return new Vector3(float.Parse(s[0]), float.Parse(s[1]), float.Parse(s[2]));
     }
-    #endregion
 
+    #endregion
 }

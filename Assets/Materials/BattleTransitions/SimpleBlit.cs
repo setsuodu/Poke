@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 using System.Collections;
 
@@ -11,60 +12,57 @@ public class SimpleBlit : MonoBehaviour
         if (TransitionMaterial != null)
             Graphics.Blit(src, dst, TransitionMaterial);
     }
-    /*
-    #region Classic Pokemon loading effect
+    
+    #region Classic Pokemon Loading Effect
+
     public Texture2D[] loadPatterns;
     public float value;
+    bool turnOn;
+
+    public Action<float> TransitionMat;
+
+    void SetTransitionMat(float _value)
+    {
+        TransitionMaterial.SetFloat("_Cutoff", _value);
+    }
 
     void OnEnable()
     {
-        TransitionMaterial.SetFloat("_Cutoff", 0);
+        TransitionMat += SetTransitionMat; //多播委托，装载
+    }
+
+    void OnDisable()
+    {
+        TransitionMat -= SetTransitionMat; //多播委托，卸载
+    }
+
+    void Start()
+    {
+        TransitionMat(value); //value = 0
     }
 
     void Update()
     {
-        value = Mathf.Lerp(0, 1, Time.deltaTime);
+        if(turnOn && value < 1)
+        {
+            value += Time.deltaTime;
+            TransitionMat(value); //名称+() 表示执行Action
+        }
     }
 
-    public void Capture()
+    public void Capture(string sc)
     {
-        StartCoroutine(LoadScene());
+        StartCoroutine(LoadScene(sc));
     }
 
-    IEnumerator LoadScene()
+    IEnumerator LoadScene(string sc)
     {
+        turnOn = true;
         int t = UnityEngine.Random.Range(0, loadPatterns.Length);
         TransitionMaterial.SetTexture("_TransitionTex", loadPatterns[t]);
-        TransitionMaterial.SetFloat("_Cutoff", value);
-
-        yield return new WaitForSeconds(1f);
-
-        AsyncOperation async = Application.LoadLevelAsync("2.CatchScene");
-
-        yield return async;
+        yield return new WaitUntil(() => value >= 1);
+        SceneManager.LoadSceneAsync(sc);
     }
+
     #endregion
-    */
-
-    private delegate void PrintString();
-    static void PrintStr(PrintString print) { }
-
-    void Start()
-    {
-        //方法装载进delegate
-        PrintString method = Method1; //委托类型要先初始化才能使用，赋值，赋的值是PrintString结构相同的函数。
-        method += Method2; //method是变量，可以再赋值。
-        //执行delegate
-        PrintStr(method);
-    }
-
-    static void Method1()
-    {
-        Debug.Log("Method1");
-    }
-
-    static void Method2()
-    {
-        Debug.Log("Method2");
-    }
 }
