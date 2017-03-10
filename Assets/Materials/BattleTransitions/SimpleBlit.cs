@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using System;
 using System.Collections;
 
-public class SimpleBlit : MonoBehaviour
+public class SimpleBlit : UnitySingletonClass<SimpleBlit>
 {
     public Material TransitionMaterial;
 
@@ -50,18 +50,18 @@ public class SimpleBlit : MonoBehaviour
         }
     }
 
-    public void Capture(string sc)
+    public void Capture()
     {
-        StartCoroutine(LoadScene(sc));
+        StartCoroutine(LoadScene());
     }
 
-    IEnumerator LoadScene(string sc)
+    IEnumerator LoadScene()
     {
         turnOn = true;
         int t = UnityEngine.Random.Range(0, loadPatterns.Length);
         TransitionMaterial.SetTexture("_TransitionTex", loadPatterns[t]);
         yield return new WaitUntil(() => value >= 1);
-        SceneManager.LoadSceneAsync(sc);
+        SceneManager.LoadSceneAsync("2.CatchScene");
     }
 
     #endregion

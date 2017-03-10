@@ -12,6 +12,8 @@ public class GoSetsuodu : MonoBehaviour
     public List<GameObject> prefabList;
     public List<Vector3> spawnLocation;
 
+    public List<SpawnPokemon> spawnPokemonList;
+
     void Start()
     {
         StartCoroutine(GetSpawnJson());
@@ -22,17 +24,14 @@ public class GoSetsuodu : MonoBehaviour
     {
         for (int i = 0; i < prefabList.Count; i++)
         {
-            SpawnManager go = Instantiate(prefabList[i]).GetComponent<SpawnManager>();
-            go.demo_CenterWorldCoordinates.latitude = spawnLocation[i].x;
-            go.demo_CenterWorldCoordinates.longitude = spawnLocation[i].z;
-            go.demo_CenterWorldCoordinates.altitude = spawnLocation[i].y;
-            //go.CoordinateWorld();
+            GameObject go = Instantiate<GameObject>(prefabList[i]);
+            //CalcVector3();
         }
     }
 
     //150个Pokemon做成ABs，打包zip。
     //前面Loading界面下载页进行版本比对，下载，解压进本地目录。
-    //游戏过程中不进行下载，始终从本地目录WWW.FromCacheOrDownload方法加载。
+    //游戏过程中不进行下载，始终从本地目录WWW.FromCacheOrDownload方法加载。← 从这里开始实现
     //GetSpawnJson后根据名字、坐标instanciate。
     IEnumerator GetSpawnJson()
     {
@@ -45,33 +44,24 @@ public class GoSetsuodu : MonoBehaviour
         Debug.Log(www.text);
         
         JsonData jd = JsonMapper.ToObject(www.text);
-        /*
+
         for (int i = 0; i < jd.Count; i++)
         {
             SpawnPokemon spawnPokemon = new SpawnPokemon();
             spawnPokemon.name = jd[i]["name"].ToString();
             spawnPokemon.latitude = float.Parse(jd[i]["latitude"].ToString());
-            spawnPokemon.Longitude = float.Parse(jd[i]["Longitude"].ToString());
-        }*/
-        /*
-        if(prefabList.Count < jd.Count)
-        {
-            for (int i = 0; i < jd.Count; i++)
-            {
-                GameObject go = Resources.Load(jd[i]["name"].ToString()) as GameObject;
-                prefabList.Add(go);
-                SpawnLocation.Add(Parse(jd[i]["location"].ToString()));
-                Debug.Log("name=" + jd[i]["name"]);
-                Debug.Log("location=" + jd[i]["location"]);
-            }
-        }*/
-    }
+            spawnPokemon.longitude = double.Parse(jd[i]["longitude"].ToString());
+            spawnPokemonList.Add(spawnPokemon);
+            Coordinates coordinates = new Coordinates(spawnPokemon.latitude, spawnPokemon.longitude, 0);
+            Vector3 location = coordinates.convertCoordinateToVector();
+            GameObject go = Instantiate(Resources.Load<GameObject>(spawnPokemon.name));
+            go.transform.SetParent(this.transform);
+            go.name = spawnPokemon.name;
+            go.transform.localPosition = location;
+            go.transform.localEulerAngles = new Vector3(0,180,0);
+            go.transform.localScale = new Vector3(50,50,50);
 
-    //json中String GPS坐标转 Vector3
-    public static Vector3 Parse(string name)
-    {
-        string[] s = name.Split(',');
-        return new Vector3(float.Parse(s[0]), float.Parse(s[1]), float.Parse(s[2]));
+        }
     }
 
     #endregion
@@ -82,8 +72,8 @@ public class GoSetsuodu : MonoBehaviour
     public class SpawnPokemon
     {
         public string name;
-        public float latitude;
-        public float Longitude;
+        public double latitude;
+        public double longitude;
     }
 
     #endregion

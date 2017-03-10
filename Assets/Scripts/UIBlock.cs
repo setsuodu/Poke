@@ -8,9 +8,10 @@ public class UIBlock : MonoBehaviour
     {
         if (EventSystem.current.IsPointerOverGameObject())
         {
-            Debug.Log("是UI");
+            //Debug.Log("是UI");
             return;
         }
+        /*
         else
         {
             if (Input.GetMouseButton(0))
@@ -22,10 +23,12 @@ public class UIBlock : MonoBehaviour
                 {
                     if (hit.transform.gameObject.tag != "Untagged")
                     {
-                        Debug.Log(hit.transform.name);
+                        //Debug.Log(hit.transform.name);
                     }
                 }
             }
+            
         }
+        */
     }
 }
