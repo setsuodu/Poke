@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class GoCatch : MonoBehaviour
 {
+    private AudioSource audio;
+    public AudioClip roar, goCatch;
+
+    void Awake()
+    {
+        audio = GetComponent<AudioSource>();
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -15,8 +23,9 @@ public class GoCatch : MonoBehaviour
             {
                 if (hit.transform.tag == "target" && hit.transform.name == gameObject.name)
                 {
+                    audio.clip = goCatch;
+                    audio.Play();
                     PlayerPrefs.SetString("name", gameObject.name);
-                    Debug.Log(PlayerPrefs.GetString("name"));
                     SimpleBlit.instance.Capture();
                 }
             }

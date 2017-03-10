@@ -8,9 +8,11 @@ public class InitPokemon : MonoBehaviour
     string _name;
     public Text notice, pokemonName, pokemonCP;
 
-    void Start()
+    IEnumerator Start()
     {
         _name = PlayerPrefs.GetString("name");
+        yield return new WaitForEndOfFrame();
+
         if (!string.IsNullOrEmpty(_name))
         {
             foreach (Transform t in transform)
@@ -27,21 +29,17 @@ public class InitPokemon : MonoBehaviour
             go.GetComponent<AudioSource>().Play();
             pokemonName.text = _name;
             pokemonCP.text = Random.Range(0, 150).ToString();
-            notice.text = "A wild " + _name + " appeared!";
-            StartCoroutine(noticeClock());
         }
+
+        notice.text = "A wild " + _name + " appeared!";
+        yield return new WaitForSeconds(1f);
+        notice.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        notice.gameObject.SetActive(false);
     }
 
     void OnDisable()
     {
         PlayerPrefs.DeleteKey("name");
-    }
-
-    IEnumerator noticeClock()
-    {
-        yield return new WaitForSeconds(1f);
-        notice.gameObject.SetActive(true);
-        yield return new WaitForSeconds(3f);
-        notice.gameObject.SetActive(false);
     }
 }

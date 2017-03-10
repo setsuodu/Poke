@@ -45,7 +45,7 @@ public class SimpleBlit : UnitySingletonClass<SimpleBlit>
     {
         if(turnOn && value < 1)
         {
-            value += Time.deltaTime;
+            value += Time.deltaTime * 0.8f;
             TransitionMat(value); //名称+() 表示执行Action
         }
     }

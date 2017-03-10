@@ -9,9 +9,6 @@ public class GoSetsuodu : MonoBehaviour
 {
     #region Spawn Pokemon
     
-    public List<GameObject> prefabList;
-    public List<Vector3> spawnLocation;
-
     public List<SpawnPokemon> spawnPokemonList;
 
     void Start()
@@ -22,11 +19,14 @@ public class GoSetsuodu : MonoBehaviour
     [ContextMenu("Spawn")]
     public void Spawn()
     {
-        for (int i = 0; i < prefabList.Count; i++)
-        {
-            GameObject go = Instantiate<GameObject>(prefabList[i]);
-            //CalcVector3();
-        }
+        GameObject go = Instantiate(Resources.Load<GameObject>("Pikachu"));
+        go.transform.SetParent(this.transform);
+        go.name = "Pikachu";
+        //Coordinates coordinates = new Coordinates(Input.location.lastData.latitude, Input.location.lastData.longitude, 0);
+        //go.transform.localPosition = coordinates.convertCoordinateToVector();
+        go.transform.localPosition = new Vector3(0,0,0);
+        go.transform.localEulerAngles = new Vector3(0, 180, 0);
+        go.transform.localScale = new Vector3(50, 50, 50);
     }
 
     //150个Pokemon做成ABs，打包zip。
@@ -45,23 +45,22 @@ public class GoSetsuodu : MonoBehaviour
         
         JsonData jd = JsonMapper.ToObject(www.text);
 
-        for (int i = 0; i < jd.Count; i++)
+        for (int i = 1; i < jd.Count; i++) //int从1开始，避免目前的重名载入不实例化bug
         {
             SpawnPokemon spawnPokemon = new SpawnPokemon();
             spawnPokemon.name = jd[i]["name"].ToString();
             spawnPokemon.latitude = float.Parse(jd[i]["latitude"].ToString());
             spawnPokemon.longitude = double.Parse(jd[i]["longitude"].ToString());
             spawnPokemonList.Add(spawnPokemon);
-            Coordinates coordinates = new Coordinates(spawnPokemon.latitude, spawnPokemon.longitude, 0);
-            Vector3 location = coordinates.convertCoordinateToVector();
             GameObject go = Instantiate(Resources.Load<GameObject>(spawnPokemon.name));
             go.transform.SetParent(this.transform);
             go.name = spawnPokemon.name;
-            go.transform.localPosition = location;
+            Coordinates coordinates = new Coordinates(spawnPokemon.latitude, spawnPokemon.longitude, 0);
+            go.transform.localPosition = coordinates.convertCoordinateToVector();
             go.transform.localEulerAngles = new Vector3(0,180,0);
             go.transform.localScale = new Vector3(50,50,50);
-
         }
+        Spawn();
     }
 
     #endregion
