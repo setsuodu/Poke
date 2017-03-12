@@ -17,11 +17,6 @@ public class PanelManager : UnitySingletonClass<PanelManager>
         watingPanel.active = isStart;
     }
 
-    public void PrivacyCtrl()
-    {
-        privacyPanel.active = !privacyPanel.active;
-    }
-
     public void dialogueCtrl()
     {
         dialoguePanel.active = !dialoguePanel.active;
