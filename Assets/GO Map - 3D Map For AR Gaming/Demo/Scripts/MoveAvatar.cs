@@ -2,6 +2,7 @@
 using System.Collections;
 using GoMap;
 
+using GoShared;
 public class MoveAvatar : MonoBehaviour {
 
 	public LocationManager locationManager;

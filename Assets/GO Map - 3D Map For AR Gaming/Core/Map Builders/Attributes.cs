@@ -51,7 +51,6 @@ public class Attributes : MonoBehaviour {
 [System.Serializable]
 public class KeyValue
 {
-	//basic values if the preferences.xml was not found
 	public string key;
 	public string value;
 }

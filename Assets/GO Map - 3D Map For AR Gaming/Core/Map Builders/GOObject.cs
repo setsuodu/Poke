@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using GoMap;
-
+using GoShared;
 public class GOObject : MonoBehaviour {
 	
 	public GOMap map;

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using System.IO;
+using GoShared;
 
 
 namespace GoMap {
@@ -31,6 +32,7 @@ namespace GoMap {
 
 		public GameObject CreateModel(Layer layer, float height)
         {
+
 			GameObject polygon = new GameObject();
 			try {
 				Poly2Mesh.Polygon poly = new Poly2Mesh.Polygon();
@@ -58,6 +60,8 @@ namespace GoMap {
 					if (height > 0) {
 						mesh = SimpleExtruder.Extrude (mesh, polygon, height);
 					}
+
+
 				}
 				filter.sharedMesh = mesh;
 

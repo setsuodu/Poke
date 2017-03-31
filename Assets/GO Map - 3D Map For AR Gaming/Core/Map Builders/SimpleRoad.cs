@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets.Helpers;
 using UnityEngine;
 using System.Linq;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class SimpleRoad : MonoBehaviour
 {
+	[HideInInspector]
 	public Vector3[] verts;
 	MeshFilter filter;
 	public float width;
 	private Mesh mesh;
 
 	private Vector3[] vertices = new Vector3[0];
+	[HideInInspector]
 	public int[] triangles = new int[0];
 
 	public void load () {
@@ -58,7 +59,7 @@ public class SimpleRoad : MonoBehaviour
 				dir = (verts[p+1] - verts[p]).normalized; 
 
 				Vector3 dirBefore = (verts [p] - verts [p-1]).normalized;
-				Vector3 tangentBefore = Vector3.Cross(tanVect, dirBefore).normalized;
+//				Vector3 tangentBefore = Vector3.Cross(tanVect, dirBefore).normalized;
 
 				tangent =  Vector3.Cross( tanVect,(dirBefore + dir) * 0.5f ).normalized;
 
@@ -67,7 +68,7 @@ public class SimpleRoad : MonoBehaviour
 			else // Last
 			{
 				Vector3 dirBefore = (verts [p] - verts [p-1]).normalized;
-				Vector3 tangentBefore = Vector3.Cross( tanVect, dirBefore).normalized;
+//				Vector3 tangentBefore = Vector3.Cross( tanVect, dirBefore).normalized;
 
 				dir = dirBefore; 
 				tangent = Vector3.Cross( tanVect, dir).normalized;

@@ -10,11 +10,14 @@
 
 1. filled mapzen_api_key： mapzen-Zj6sQpm
 
-2. 4square poi 
-```
-string url = baseUrl + "&ll=" + currentLocation.latitude + "," + currentLocation.longitude + "&query=" + queryPOI + "&intent=" + "checkin" + "&client_id=" + categoryID + "&client_secret=" + oauth_token;
-```            
+2. FourSquare POI 
 
-3. 
+```
+
+string url = baseUrl + "&ll=" + currentLocation.latitude + "," + currentLocation.longitude + "&query=" + queryPOI + "&intent=" + "checkin" + "&client_id=" + categoryID + "&client_secret=" + oauth_token;
+
+```         
+
+3. add using GoShared; to use class Coordinates.
 
 keep an eye on [my blog](http://blog.csdn.net/mseol/article/details/53463981). I will tell many technologies and details of this game.

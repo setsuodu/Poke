@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Assets.Helpers;
 using UnityEngine;
 
 namespace GoMap
@@ -15,7 +14,8 @@ namespace GoMap
 
 		public void Initialize( List<Vector3> verts, string kind, Layer layer, int sort)
         {
-            _verts = verts;
+
+			_verts = verts;
 
 			RenderingOptions renderingOptions = null;
 			foreach (RenderingOptions r in layer.renderingOptions) {
@@ -29,12 +29,18 @@ namespace GoMap
 			Material material = layer.defaultRendering.material;
 			Material outlineMaterial = layer.defaultRendering.outlineMaterial;
 			float outlineWidth = width + layer.defaultRendering.outlineWidth;
+			string tag = layer.defaultRendering.tag;
 			if (renderingOptions != null) {
 				width = renderingOptions.lineWidth;
 				material = renderingOptions.material;
 				defaultY = renderingOptions.distanceFromFloor;
 				outlineMaterial = renderingOptions.outlineMaterial;
 				outlineWidth = width + renderingOptions.outlineWidth;
+				tag = renderingOptions.tag;
+			}
+				
+			if (tag.Length > 0) {
+				gameObject.tag = tag;
 			}
 
 			if (defaultY == 0f)
@@ -47,21 +53,38 @@ namespace GoMap
 			
 			SimpleRoad road = gameObject.AddComponent<SimpleRoad> ();
 
-			Vector3[] vertices = _verts.Select(x => new Vector3(x.x, 0, x.z)).ToArray();
+			Vector3[] vertices = _verts.ToArray();
+
 			road.verts = vertices;
 			road.width = width;
 
 			road.load ();
+			gameObject.GetComponent<Renderer>().material = material;
 
 			Vector3 position = transform.position;
 			position.y = defaultY;
+
+			#if GOLINK
+			//[GOLINK] Trigger GOMap Tile creation (This requires both GoMap and GoTerrain)
+			if (renderingOptions.polygonHeight > 0) {
+				int offset = 5;
+				gameObject.GetComponent<MeshFilter> ().sharedMesh = SimpleExtruder.Extrude (gameObject.GetComponent<MeshFilter> ().sharedMesh, gameObject, renderingOptions.polygonHeight + offset);
+				position.y -= offset;
+			}
+			#endif
+
 			transform.position = position;
 
-			gameObject.GetComponent<Renderer>().material = material;
-
 			if (outlineMaterial != null) {
-				CreateRoadOutline (verts, outlineMaterial, outlineWidth, sort,defaultY);
-			}
+				GameObject outline = CreateRoadOutline (verts, outlineMaterial, outlineWidth, sort,defaultY);
+				if (layer.useColliders)
+					outline.AddComponent<MeshCollider> ().sharedMesh = outline.GetComponent<MeshFilter> ().sharedMesh;
+
+				outline.layer = gameObject.layer;
+				outline.tag = gameObject.tag;
+				
+			} else if (layer.useColliders)
+				gameObject.AddComponent<MeshCollider>().sharedMesh = gameObject.GetComponent<MeshFilter> ().sharedMesh;
 
         }
 
@@ -74,7 +97,7 @@ namespace GoMap
 
 			SimpleRoad road = outline.AddComponent<SimpleRoad> ();
 
-			Vector3[] vertices = _verts.Select(x => new Vector3(x.x, 0, x.z)).ToArray();
+			Vector3[] vertices = _verts.ToArray();
 			road.verts = vertices;
 			road.width = width;
 
@@ -89,6 +112,40 @@ namespace GoMap
 			return outline;
 		}
 
+		//[GOLink]
+		#if GOLINK
+		public List<Vector3> BreakLine (List<Vector3> verts, GoTerrain.GOTerrain terrain) {
+
+			int treshold = 25;
+			List<Vector3> brokenVerts = new List <Vector3> ();
+			for (int i = 0; i<verts.Count-1; i++) {
+				
+				float d = Vector3.Distance (verts [i], verts [i + 1]);
+				if (d > treshold) {
+					for (int j = 0; j < d; j += treshold) {
+						Vector3 P = LerpByDistance (verts [i], verts [i + 1], j);
+						P.y = terrain.FindAltitudeForVector (P);
+						brokenVerts.Add (P);
+					}
+				} else {
+					Vector3 P = verts [i];
+					P.y = terrain.FindAltitudeForVector (P);
+					brokenVerts.Add(P);
+				}
+
+			}
+			Vector3 Pn = verts [verts.Count - 1];
+			Pn.y = terrain.FindAltitudeForVector (Pn);
+			brokenVerts.Add (Pn);
+			return brokenVerts;
+		}
+
+		public Vector3 LerpByDistance(Vector3 A, Vector3 B, float x)
+		{
+			Vector3 P = x * Vector3.Normalize(B - A) + A;
+			return P;
+		}
+		#endif
     }
 
 }

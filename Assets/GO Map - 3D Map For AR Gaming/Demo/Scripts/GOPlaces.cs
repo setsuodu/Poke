@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Assets;
 
 //This class uses Google Places webservice API. 
 //It's made for demo purpose only, and needs your personal Google Developer API Key. 
 //(No credit card is required, visit https://developers.google.com/places/web-service/intro)
 
+using GoShared;
 namespace GoMap
 {
 

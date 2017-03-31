@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets.Helpers;
 using UnityEngine;
 using System.Linq;
 
+using GoShared;
+
 #if UNITY_EDITOR
 using UnityEditor;
+
 
 [CustomEditor(typeof(SimplePolygon))]
 public class ObjectBuilderEditor : Editor
@@ -84,7 +86,7 @@ public class SimplePolygon : MonoBehaviour
 	public Mesh CreateMesh(List<Vector3> verts)
 	{
 
-		Triangulator triangulator = new Triangulator(verts.Select(x => x.ToVector2xz()).ToArray());
+		Triangulator triangulator = new GoShared.Triangulator(verts.Select(x => x.ToVector2xz()).ToArray());
 		Mesh mesh = new Mesh();
 
 		List<Vector3> vertices = verts;

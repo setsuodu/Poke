@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Assets;
 
 //This class uses Foursquare webservice API. 
 //It's made for demo purpose only, and needs your personal foursquare API Key. 
 //(No credit card is required, visit https://developer.foursquare.com/docs/venues/search)
 
 //Full list of venues categories is given by this API https://api.foursquare.com/v2/venues/categories&oauth_token=
+
+using GoShared;
 
 namespace GoMap {
 	
@@ -41,21 +42,19 @@ namespace GoMap {
 
 			if (lastQueryCenter == null || lastQueryCenter.DistanceFromPoint (currentLocation) >= queryRadius/1.5f) {
 				lastQueryCenter = currentLocation;
-				//string url = baseUrl + "&ll=" + currentLocation.latitude + "," + currentLocation.longitude + "&radius=" + queryRadius+"&categoryId="+categoryID+"&oauth_token="+oauth_token;
-                string url = baseUrl + "&ll=" + currentLocation.latitude.ToString("f6") + "," + currentLocation.longitude.ToString("f6") + "&query=" + "coffee" + "intent=" + "checkin" + "&client_id=" + categoryID + "&client_secret=" + oauth_token;
-                StartCoroutine(LoadPlaces(url));
+				string url = baseUrl + "&ll=" + currentLocation.latitude + "," + currentLocation.longitude + "&radius=" + queryRadius+"&categoryId="+categoryID+"&oauth_token="+oauth_token;
+				StartCoroutine (LoadPlaces(url));
 			}
 		}
 
 		public IEnumerator LoadPlaces (string url) { //Request the API
 
-			//Debug.Log ("GO4Square URL: " + url);
+			Debug.Log ("GO4Square URL: " + url);
 
 			var www = new WWW(url);
 			yield return www;
-            //Debug.Log("get json " + www.text);
 
-            ParseJob job = new ParseJob();
+			ParseJob job = new ParseJob();
 			job.InData = www.text;
 			job.Start();
 
@@ -83,19 +82,8 @@ namespace GoMap {
 				go.transform.localPosition = coordinates.convertCoordinateToVector(0);
 				go.transform.parent = transform;
 				go.name = (string)result["name"];
+
 			}
 		}
-
-        /*
-        public GameObject obj;
-        public double lat, lng, alt;
-
-        [ContextMenu("CoordObj")]
-        void CoordObj()
-        {
-            Coordinates coordinates = new Coordinates(lat, lng, alt);
-            obj.transform.position = coordinates.convertCoordinateToVector();
-        }
-        */
-    }
+	}
 }

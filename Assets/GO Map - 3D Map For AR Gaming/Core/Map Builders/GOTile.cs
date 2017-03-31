@@ -7,6 +7,8 @@ using System.Text;
 using UnityEngine;
 using MiniJSON;
 
+using GoShared;
+
 namespace GoMap
 {
 	public class GOTile : MonoBehaviour
@@ -15,9 +17,12 @@ namespace GoMap
 		public float diagonalLenght;
 
 		public List<Vector3> vertices;
-		private object mapData;
+		[HideInInspector]
+		public object mapData;
+		[HideInInspector]
+		public GOMap map;
+
 		ParseJob job;
-		GOMap map;
 		IList buildingsIds = new List<object>();
 
 		public IEnumerator ParseJson (string data) {
@@ -41,16 +46,15 @@ namespace GoMap
 			var tileurl = realPos.x + "/" + realPos.y;
 
 			var baseUrl = "https://tile.mapzen.com/mapzen/vector/v1/";
-			//			var baseUrl = "https://vector.mapzen.com/osm/"; oldapi
-			List <string> layerNames = new List<string>();
-			for (int i = 0; i < layers.ToList().Count; i++) {
-				if (layers [i].disabled == false) {
-					layerNames.Add(layers [i].json);
-				}
-			}
+			List <string> layerNames = map.layerNames();
 			layerNames.RemoveAll(str => String.IsNullOrEmpty(str));
-//			var url = baseUrl + string.Join(",",layerNames.ToArray())+"/"+zoom+"/";
-			var url = baseUrl + "all/"+zoom+"/";
+
+			var url = baseUrl + string.Join(",",layerNames.ToArray())+"/"+zoom+"/";
+
+			if (layers.Count() > 2) {
+				url = baseUrl + "all/"+zoom+"/";
+			}
+
 
 			var completeurl = url + tileurl + ".json"; 
 
@@ -71,13 +75,17 @@ namespace GoMap
 					yield return www;
 					if (www.error == null && www.text.Length > 0) {
 						FileHandler.SaveText (gameObject.name, www.text);
-					}else if (www.error != null && (www.error.Contains("429") || www.error.Contains("timed out"))) {
+					} else if (www.error != null && (www.error.Contains("429") || www.error.Contains("timed out"))) {
 						Debug.LogWarning("Tile data reload "+www.error);
 						yield return new WaitForSeconds(1);
 						yield return StartCoroutine (LoadTileData(map,tilecenter,zoom,layers,delayedLoad));
 						yield break;
 
-					}else {
+					}else if (www.error != null && (www.error.Contains("401"))) {
+						Debug.LogWarning("[MapZen API KEY] "+www.error+ " - A Mapzen Api key is required to make GoMap work properly, please make one at: https://mapzen.com/developers");
+						yield break;
+					}
+					else {
 						Debug.LogWarning("Tile data missing "+www.error);
 						((GOMap)m).tiles.Remove(this);
 						GameObject.Destroy(this.gameObject);
@@ -254,7 +262,6 @@ namespace GoMap
 							StartCoroutine (CreatePolygon (multi, kind, type, subject, clips,properties, layer, delayedLoad));	
 						//						}
 					}
-
 				}
 			}
 		}
@@ -275,15 +282,28 @@ namespace GoMap
 			{
 				IList c = (IList)coordinates[i];
 				Coordinates coords = new Coordinates ((double)c[1], (double)c[0],0);
-				l.Add(coords.convertCoordinateToVector(layer.defaultRendering.distanceFromFloor));
-
+				float defaultY = layer.defaultRendering.distanceFromFloor;
+				l.Add(coords.convertCoordinateToVector(defaultY));
 			}
+
 
 			GameObject road = new GameObject (layer.json);
 			RoadPolygon roadPolygon = road.AddComponent<RoadPolygon>();
 			road.transform.parent = parent.transform;
-//			try
-//			{
+
+			#if GOLINK
+			if (map.goTerrain != null) {
+				l = roadPolygon.BreakLine (l,map.goTerrain);
+			}
+			#endif
+
+			//Layer mask
+			if (layer.useLayerMask == true) {
+				AddObjectToLayerMask (layer, road);				
+			} 
+				
+			try
+			{
 				
 				Int64 sort;
 				if (properties.Contains("sort_key")) {
@@ -295,11 +315,11 @@ namespace GoMap
 				Attributes attributes = road.AddComponent<Attributes>();
 				attributes.useName = true;
 				attributes.loadWithDictionary((Dictionary<string,object>)properties);
-//			}
-//			catch (Exception ex)
-//			{
-//				Debug.Log(ex);
-//			}
+			}
+			catch (Exception ex)
+			{
+				Debug.Log(ex);
+			}
 			if (delayedLoad)
 				yield return null;
 		}
@@ -323,22 +343,25 @@ namespace GoMap
 
 			float height = layer.defaultRendering.polygonHeight;
 			float defaultY = layer.defaultRendering.distanceFromFloor ;
+
 			Material material = GetMaterial(layer.defaultRendering,poly.center);
 			Material roofMat = layer.defaultRendering.roofMaterial == null ? layer.defaultRendering.material : layer.defaultRendering.roofMaterial;
+
+			string tag = layer.defaultRendering.tag;
 
 			if (renderingOptions != null) {
 				height = renderingOptions.polygonHeight;
 				material = GetMaterial(renderingOptions,poly.center);;
 				defaultY = renderingOptions.distanceFromFloor;
 				roofMat = renderingOptions.roofMaterial;
-
+				tag = renderingOptions.tag;
 			}
 
 			//Group buildings by center coordinates
 			if (layer.json == "buildings") {
 				GameObject centerContainer = findNearestCenter(poly.center,parent,material);
 				parent = centerContainer;
-				material = centerContainer.GetComponent<MatHolder> ().material;
+				material = centerContainer.GetComponent<GOMatHolder> ().material;
 			}
 
 
@@ -356,25 +379,43 @@ namespace GoMap
 				defaultY = sort / 1000.0f;
 			}
 
+			int offset = 0;
+
+			#if GOLINK
+			//[GOLINK] GOTerrain link (This requires GOTerrain! -Coming Soon- ) 
+				offset = 10;
+				defaultY = map.goTerrain.FindAltitudeForVector(poly.center)-offset;
+			#endif
+
 			if (layer.useRealHeight && properties.Contains("height")) {
 				double h = (double)properties["height"];
 				height = (float)h;
 			}
 			if (layer.useRealHeight && properties.Contains("min_height")) {
+//				Debug.LogError("CHECK MIN HEIGHT");
 				double hm = (double)properties["min_height"];
 				defaultY = (float)hm;
 				height = (float)height-(float)hm;
 			} 
 				
-			polygon = poly.CreateModel(layer,height);
+				polygon = poly.CreateModel(layer,height+offset);
 				if (polygon == null)
 					yield break;
 
 			polygon.name = layer.name;
 			polygon.transform.parent = parent.transform;
 
-			if (layer.useRealHeight) {
-//				GameObject roof = poly.CreateModel(layer,0);
+			//Layer mask
+			if (layer.useLayerMask == true) {
+				AddObjectToLayerMask (layer, polygon);	
+			} 
+
+			if (tag.Length > 0) {
+				polygon.tag = tag;
+			}
+
+				if (layer.useRealHeight && roofMat != null) {
+
 				GameObject roof = poly.CreateRoof();
 				roof.name = "roof";
 				roof.transform.parent = polygon.transform;
@@ -390,6 +431,8 @@ namespace GoMap
 					polygon.name = "roofx";
 				}
 
+				roof.tag = polygon.tag;
+				roof.layer = polygon.layer;
 			}
 
 			Vector3 pos = polygon.transform.position;
@@ -403,15 +446,17 @@ namespace GoMap
 
 			polygon.GetComponent<Renderer>().material = material;
 
+
+
 			if (layer.OnFeatureLoad != null) {
 				layer.OnFeatureLoad.Invoke(poly.mesh2D,layer,kind,poly.center);
 			}
 
 			}
-			catch (Exception ex)
+			catch
 			{
-				GameObject.Destroy (polygon);
-				Debug.Log(ex);
+				GameObject.DestroyImmediate (polygon);
+//				Debug.Log(ex);
 			}
 			if (delayedLoad)
 				yield return null;
@@ -458,7 +503,7 @@ namespace GoMap
 			GameObject container = new GameObject (name);
 			//			container.transform.localPosition = center;
 			container.transform.parent = parent.transform;
-			container.AddComponent<MatHolder> ().material = material;
+			container.AddComponent<GOMatHolder> ().material = material;
 			buildingCenters.Add (center);
 			return container;
 		}
@@ -474,6 +519,15 @@ namespace GoMap
 			} else
 				return rendering.material;
 			
+		}
+
+		private void AddObjectToLayerMask (Layer layer, GameObject obj) {
+			LayerMask mask = LayerMask.NameToLayer (layer.name);
+			if (mask.value > 0 && mask.value < 31) {
+				obj.layer = LayerMask.NameToLayer (layer.name);
+			} else {
+				Debug.LogWarning ("[GOMap] Please create layer masks before running GoMap. A layer mask must have the same name declared in GoMap inspector, for example \""+layer.name+"\".");
+			}
 		}
 	}
 }

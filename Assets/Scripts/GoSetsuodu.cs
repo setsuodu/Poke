@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using GoMap;
+using GoShared;
 using System;
 using LitJson;
 
