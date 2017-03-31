@@ -3,83 +3,82 @@ using System.Collections;
 using GoMap;
 
 using GoShared;
-public class MoveAvatar : MonoBehaviour {
+public class MoveAvatar : MonoBehaviour
+{
+    public LocationManager locationManager;
+    public GameObject avatarFigure;
 
-	public LocationManager locationManager;
-	public GameObject avatarFigure;
+    void Start()
+    {
+        locationManager.onOriginSet += OnOriginSet;
+        locationManager.onLocationChanged += OnLocationChanged;
+    }
 
-	// Use this for initialization
-	void Start () {
+    void OnOriginSet(Coordinates currentLocation)
+    {
+        //Position
+        Vector3 currentPosition = currentLocation.convertCoordinateToVector();
+        currentPosition.y = transform.position.y;
 
-		locationManager.onOriginSet += OnOriginSet;
-		locationManager.onLocationChanged += OnLocationChanged;
-	}
+        transform.position = currentPosition;
+    }
 
-	void OnOriginSet (Coordinates currentLocation) {
+    void OnLocationChanged(Coordinates currentLocation)
+    {
+        Vector3 lastPosition = transform.position;
 
-		//Position
-		Vector3 currentPosition = currentLocation.convertCoordinateToVector ();
-		currentPosition.y = transform.position.y;
+        //Position
+        Vector3 currentPosition = currentLocation.convertCoordinateToVector();
+        currentPosition.y = transform.position.y;
 
-		transform.position = currentPosition;
+        if (lastPosition == Vector3.zero)
+        {
+            lastPosition = currentPosition;
+            avatarFigure.GetComponent<Animator>().SetFloat("Forward", 0);
+        }
+        else
+        {
+            avatarFigure.GetComponent<Animator>().SetFloat("Forward", 0.5f);
+        }
 
-	}
+        moveAvatar(lastPosition, currentPosition);
+    }
 
-	void OnLocationChanged (Coordinates currentLocation) {
+    void moveAvatar(Vector3 lastPosition, Vector3 currentPosition)
+    {
+        StartCoroutine(move(lastPosition, currentPosition, 0.5f));
+    }
 
-		Vector3 lastPosition = transform.position;
+    private IEnumerator move(Vector3 lastPosition, Vector3 currentPosition, float time)
+    {
+        float elapsedTime = 0;
+        Vector3 targetDir = currentPosition - lastPosition;
+        Quaternion finalRotation = Quaternion.LookRotation(targetDir);
 
-		//Position
-		Vector3 currentPosition = currentLocation.convertCoordinateToVector ();
-		currentPosition.y = transform.position.y;
+        while (elapsedTime < time)
+        {
+            transform.position = Vector3.Lerp(lastPosition, currentPosition, (elapsedTime / time));
+            avatarFigure.transform.rotation = Quaternion.Lerp(avatarFigure.transform.rotation, finalRotation, (elapsedTime / time));
 
-		if (lastPosition == Vector3.zero) {
-			lastPosition = currentPosition;
-		}
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
 
-//		transform.position = currentPosition;
-//		rotateAvatar (lastPosition);
-
-		moveAvatar (lastPosition,currentPosition);
-
-	}
-
-	void moveAvatar (Vector3 lastPosition, Vector3 currentPosition) {
-
-		StartCoroutine (move (lastPosition,currentPosition,0.5f));
-	}
-
-	private IEnumerator move(Vector3 lastPosition, Vector3 currentPosition, float time) {
-
-		float elapsedTime = 0;
-		Vector3 targetDir = currentPosition-lastPosition;
-		Quaternion finalRotation = Quaternion.LookRotation (targetDir);
-
-		while (elapsedTime < time)
-		{
-			transform.position = Vector3.Lerp(lastPosition, currentPosition, (elapsedTime / time));
-			avatarFigure.transform.rotation = Quaternion.Lerp(avatarFigure.transform.rotation, finalRotation,(elapsedTime / time));
-
-			elapsedTime += Time.deltaTime;
-			yield return new WaitForEndOfFrame();
-		}
-
+        }
 //		avatarFigure.transform.rotation = finalRotation;
-	}
-		
-	void rotateAvatar(Vector3 lastPosition) {
-	
-		//Orient Avatar
-		Vector3 targetDir = transform.position-lastPosition;
+    }
 
-		if (targetDir != Vector3.zero) {
-			avatarFigure.transform.rotation = Quaternion.Slerp(
-				avatarFigure.transform.rotation,
-				Quaternion.LookRotation(targetDir),
-				Time.deltaTime * 10.0f
-			);
-		}
-	}
+    void rotateAvatar(Vector3 lastPosition)
+    {
+        //Orient Avatar
+        Vector3 targetDir = transform.position - lastPosition;
 
-
+        if (targetDir != Vector3.zero)
+        {
+            avatarFigure.transform.rotation = Quaternion.Slerp(
+                avatarFigure.transform.rotation,
+                Quaternion.LookRotation(targetDir),
+                Time.deltaTime * 10.0f
+            );
+        }
+    }
 }
