@@ -18,6 +18,11 @@ public class CameraAsBackground : MonoBehaviour
         image.enabled = false;
     }
 
+    void OnDestroy()
+    {
+        cam.Stop();
+    }
+
     void Update ()
     {
         if (cam.width < 100)

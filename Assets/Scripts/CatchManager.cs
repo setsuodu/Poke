@@ -1,6 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CatchManager : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class CatchManager : MonoBehaviour
     public void RunAway(string sc)
     {
         isARModel = false;
-        Application.LoadLevel(sc);
+        SceneManager.LoadSceneAsync(sc);
     }
 
     public void BagOpen()

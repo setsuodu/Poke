@@ -1,10 +1,7 @@
-﻿using Assets;
-using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections;
-using System;
+using UnityEngine;
 using UnityEngine.UI;
-using GoMap;
 
     public class SpawnManager : MonoBehaviour
     {
