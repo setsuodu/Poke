@@ -17,7 +17,8 @@ namespace GoMap {
 		public string baseUrl = "https://api.foursquare.com/v2/venues/search?v=20160914";
 		public string categoryID;
 		public string oauth_token;
-		public GameObject prefab;
+        public string queryPOI;
+        public GameObject prefab;
 		public float queryRadius = 1000;
 
 		Coordinates lastQueryCenter = null;
@@ -42,8 +43,9 @@ namespace GoMap {
 
 			if (lastQueryCenter == null || lastQueryCenter.DistanceFromPoint (currentLocation) >= queryRadius/1.5f) {
 				lastQueryCenter = currentLocation;
-				string url = baseUrl + "&ll=" + currentLocation.latitude + "," + currentLocation.longitude + "&radius=" + queryRadius+"&categoryId="+categoryID+"&oauth_token="+oauth_token;
-				StartCoroutine (LoadPlaces(url));
+                //string url = baseUrl + "&ll=" + currentLocation.latitude + "," + currentLocation.longitude + "&radius=" + queryRadius+"&categoryId="+categoryID+"&oauth_token="+oauth_token;
+                string url = baseUrl + "&ll=" + currentLocation.latitude + "," + currentLocation.longitude + "&query=" + queryPOI + "&intent=" + "checkin" + "&client_id=" + categoryID + "&client_secret=" + oauth_token;
+                StartCoroutine (LoadPlaces(url));
 			}
 		}
 
