@@ -12,43 +12,56 @@ public class Register : UnitySingletonClass<Register>
         loginUrl = "http://www.setsuodu.com/login.php";
     }
 
-    IEnumerator RegisterData(string user, string pwd)
+    #region 注册
+
+    IEnumerator RegisterData(string username, string password)
     {
         WWWForm form = new WWWForm();
-        form.AddField("pname", user);
-        form.AddField("ppwd", pwd);
+        form.AddField("username", username);
+        form.AddField("password", password);
 
         WWW www = new WWW(RegUrl, form);
         yield return www;
-        if (www.text != null)
+
+        if (!string.IsNullOrEmpty(www.text))
         {
             Debug.Log("Register OK : " + www.text);
         }
     }
 
-    public void doRegister(string user, string pwd)
+    public void doRegister(string username, string password)
     {
-        StartCoroutine(RegisterData(user, pwd));
+        StartCoroutine(RegisterData(username, password));
     }
 
-    IEnumerator LoginData(string user, string pwd)
+    #endregion
+
+    #region 登录
+
+    IEnumerator LoginData(string username, string password)
     {
         WWWForm form = new WWWForm();
-        form.AddField("pname", user);
-        form.AddField("ppwd", pwd);
+        form.AddField("username", username);
+        form.AddField("password", password);
 
         WWW www = new WWW(loginUrl, form);
         yield return www;
         Debug.Log("Login OK : " + www.text);
-        if (www.text == "LoginRight")
+
+        switch (www.text)
         {
-            yield return new WaitForSeconds(2f);
-            PanelManager.instance.dialogueCtrl();
+            case "LoginRight":
+                yield return new WaitForSeconds(2f);
+                PanelManager.instance.dialogueCtrl();
+                yield break;
         }
     }
 
-    public void doLogin(string user, string pwd)
+    public void doLogin(string username, string password)
     {
-        StartCoroutine(LoginData(user, pwd));
+        StartCoroutine(LoginData(username, password));
     }
+
+    #endregion
+
 }

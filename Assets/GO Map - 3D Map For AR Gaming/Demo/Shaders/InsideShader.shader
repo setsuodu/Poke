@@ -1,4 +1,6 @@
-﻿// Based on Unlit shader, but culls the front faces instead of the back
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+// Based on Unlit shader, but culls the front faces instead of the back
 
 Shader "GoMap/InsideVisible" {
 Properties {
@@ -33,7 +35,7 @@ SubShader {
 			v2f vert (appdata_t v)
 			{
 				v2f o;
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				v.texcoord.x = 1 - v.texcoord.x;   // ADDED BY BERNIE, TO FLIP THE DIRECTION OF THE TEXTURE				
 				o.texcoord = TRANSFORM_TEX(v.texcoord, _MainTex);
 				return o;
