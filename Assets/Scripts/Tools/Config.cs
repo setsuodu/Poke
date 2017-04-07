@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public static class Config
 {
+    public static readonly string registUrl = "http://www.setsuodu.com/register.php";
+
     public static readonly string serverUrl = "http://www.setsuodu.com/json/spawn.json";
 
     public static readonly string localPath = Application.persistentDataPath;
