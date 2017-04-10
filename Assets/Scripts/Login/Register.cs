@@ -107,6 +107,8 @@ public class Register : UnitySingletonClass<Register>
                 loginState.text = "登录成功";
                 Debug.Log("登录成功");
                 //GameManager.instance.LoadScene("Loading");
+                yield return new WaitForSeconds(2f);
+                PanelManager.instance.dialogueCtrl();
                 break;
             case "error":
                 loginState.text = "用户名或密码错误";

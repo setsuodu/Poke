@@ -109,8 +109,7 @@ public class ShareDemo : MonoBehaviour
                 case PlatformType.QQ:
                     Hashtable info = ssdk.GetAuthInfo(PlatformType.QQ);
                     authInfo = JsonUtility.FromJson<AuthInfo>(MiniJSON.jsonEncode(info));
-                    //完整的json内容作为string传入，得到整个UserInfo结构/类
-                    //qqUser = JsonUtility.FromJson<QQUser>(MiniJSON.jsonEncode(result));
+                    Debug.Log("userGender " + authInfo.userGender);
                     QQRegist();
                     break;
                 case PlatformType.WeChat:
