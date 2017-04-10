@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Register : UnitySingletonClass<Register>
 {
-    public Animator tips;
+    //public Animator tips;
+    //public Text loginState;
     public InputField regUser, regPwd, loginUser, loginPwd;
-    public Text loginState;
 
     #region 注册
 
@@ -15,10 +15,10 @@ public class Register : UnitySingletonClass<Register>
     {
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
-            loginState.text = "未填写用户名或密码";
+            //loginState.text = "未填写用户名或密码";
             yield return new WaitForSeconds(2f);
-            loginState.text = "";
-            tips.SetBool("isOn", false);
+            //loginState.text = "";
+            //tips.SetBool("isOn", false);
             yield break;
         }
 
@@ -34,39 +34,39 @@ public class Register : UnitySingletonClass<Register>
         {
             Debug.Log(www.error);
         }
-        loginState.text = www.text;
+        //loginState.text = www.text;
 
         switch (www.text)
         {
             case "success":
-                loginState.text = "注册成功";
+                //loginState.text = "注册成功";
                 Debug.Log("注册成功");
                 break;
             case "exist":
-                loginState.text = "用户名已被注册";
+                //loginState.text = "用户名已被注册";
                 Debug.Log("用户名已被注册");
                 break;
             case "error_sql":
-                loginState.text = "数据库链接失败";
+                //loginState.text = "数据库链接失败";
                 Debug.Log("数据库链接失败");
                 break;
         }
 
         yield return new WaitForSeconds(2f);
-        loginState.text = "";
-        tips.SetBool("isOn", false);
+        //loginState.text = "";
+        //tips.SetBool("isOn", false);
     }
 
     public void doRegister()
     {
         StartCoroutine(RegisterData(regUser.text, regPwd.text));
-        tips.SetBool("isOn", true);
+        //tips.SetBool("isOn", true);
     }
 
     public void doRegister(string username, string password)
     {
         StartCoroutine(RegisterData(username, password));
-        tips.SetBool("isOn", true);
+        //tips.SetBool("isOn", true);
     }
 
     #endregion
@@ -77,10 +77,10 @@ public class Register : UnitySingletonClass<Register>
     {
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
-            loginState.text = "未填写用户名或密码";
+            //loginState.text = "未填写用户名或密码";
             yield return new WaitForSeconds(2f);
-            loginState.text = "";
-            tips.SetBool("isOn", false);
+            //loginState.text = "";
+            //tips.SetBool("isOn", false);
             yield break;
         }
 
@@ -99,19 +99,19 @@ public class Register : UnitySingletonClass<Register>
         {
             Debug.Log(www.error);
         }
-        loginState.text = www.text;
+        //loginState.text = www.text;
 
         switch (www.text)
         {
             case "success":
-                loginState.text = "登录成功";
+                //loginState.text = "登录成功";
                 Debug.Log("登录成功");
                 //GameManager.instance.LoadScene("Loading");
                 yield return new WaitForSeconds(2f);
                 PanelManager.instance.dialogueCtrl();
                 break;
             case "error":
-                loginState.text = "用户名或密码错误";
+                //loginState.text = "用户名或密码错误";
                 Debug.Log("用户名或密码错误");
                 break;
             default:
@@ -120,20 +120,20 @@ public class Register : UnitySingletonClass<Register>
         }
 
         yield return new WaitForSeconds(2f);
-        loginState.text = "";
-        tips.SetBool("isOn", false);
+        //loginState.text = "";
+        //tips.SetBool("isOn", false);
     }
 
     public void doLogin()
     {
         StartCoroutine(LoginData(loginUser.text, loginPwd.text));
-        tips.SetBool("isOn", true);
+        //tips.SetBool("isOn", true);
     }
 
     public void doLogin(string username, string password)
     {
         StartCoroutine(LoginData(username, password));
-        tips.SetBool("isOn", true);
+        //tips.SetBool("isOn", true);
     }
 
     #endregion

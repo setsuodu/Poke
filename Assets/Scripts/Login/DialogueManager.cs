@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -13,13 +14,19 @@ public class DialogueManager : MonoBehaviour
     void OnEnable()
     {
         StartCoroutine(PlaySound(light, 3f));
+        NextWord();
     }
 
     public void NextWord()
     {
         if (count < ConversationList.Count)
         {
-            Conversation.text = ConversationList[count];
+            string str = ConversationList[count].ToString();
+            if (str.Contains("\\"))
+            {
+                str = str.Split('\\')[0] + "\n" + str.Split('\\')[1];
+            }
+            Conversation.text = str; //"<color=red> 操作步骤 </color>\n关火 -> 停气 -> 抬盖"
             count += 1;
         }
     }
@@ -27,7 +34,7 @@ public class DialogueManager : MonoBehaviour
 	public void LoadScene (string sc)
     {
         if (count < ConversationList.Count) return;
-        else Application.LoadLevel(sc);
+        else SceneManager.LoadScene(sc);
 	}
 
     IEnumerator PlaySound(AudioSource _audio, float _time)

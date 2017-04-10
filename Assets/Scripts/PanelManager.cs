@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PanelManager : UnitySingletonClass<PanelManager>
 {
@@ -8,13 +9,7 @@ public class PanelManager : UnitySingletonClass<PanelManager>
 
     public void LoadScene(string sc)
     {
-        Application.LoadLevel(sc);
-    }
-
-    public void WaitingCtrl(bool isStart)
-    {
-        loginPanel.active = !isStart;
-        watingPanel.active = isStart;
+        SceneManager.LoadScene(sc);
     }
 
     public void dialogueCtrl()

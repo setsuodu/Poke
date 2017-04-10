@@ -22,8 +22,6 @@ public class ShareDemo : MonoBehaviour
 
     void QQRegist()
     {
-        PanelManager.instance.WaitingCtrl(true);
-
         string regName = Md5Sum(authInfo.token); 
 
         //注册 -> 登录，账户为token，密码为token的MD5值
