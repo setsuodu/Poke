@@ -77,7 +77,7 @@ namespace cn.sharesdk.unity3d
 				return;
 			}
 			
-			Hashtable res = (Hashtable) MiniJSON2.jsonDecode(data);
+			Hashtable res = (Hashtable)MiniJSON.jsonDecode(data);
 			if (res == null || res.Count <= 0) 
 			{
 				return;

@@ -7,28 +7,28 @@ using cn.sharesdk.unity3d; //导入ShareSDK
 
 public class ShareDemo : MonoBehaviour
 {
-    private ShareSDK shareSdk;
-    public Text message;
+    private ShareSDK ssdk;
     QQUser qqUser = new QQUser();
+    AuthInfo authInfo = new AuthInfo();
+    public Text message;
 
     void Start()
     {
-        shareSdk = GetComponent<ShareSDK>();
-        shareSdk.shareHandler += ShareResultHandler; //分享回调事件
-        shareSdk.authHandler += AuthResultHandler; //授权回调事件
-        shareSdk.showUserHandler += GetUserInfoResultHandler; //用户信息事件
+        ssdk = GetComponent<ShareSDK>();
+        ssdk.shareHandler += ShareResultHandler; //分享回调事件
+        ssdk.authHandler += AuthResultHandler; //授权回调事件
+        ssdk.showUserHandler += GetUserInfoResultHandler; //用户信息事件
     }
 
-    void QQReg()
+    void QQRegist()
     {
         PanelManager.instance.WaitingCtrl(true);
 
-        string regName = Md5Sum(qqUser.nickname);
-        Debug.Log(qqUser.nickname + " : " + regName);
-        //先注册
-        Register.instance.doRegister(regName, regName);
-        //再登录
-        Register.instance.doLogin(regName, regName);
+        string regName = Md5Sum(authInfo.token); 
+
+        //注册 -> 登录，账户为token，密码为token的MD5值
+        Register.instance.doRegister(authInfo.token, regName);
+        Register.instance.doLogin(authInfo.token, regName);
     }
 
     #region 分享
@@ -49,7 +49,7 @@ public class ShareDemo : MonoBehaviour
         content.SetMusicUrl("http://up.mcyt.net/md5/53/OTg1NjA5OQ_Qq4329912.mp3");//分享类型为音乐时用
         content.SetShareType(ContentType.Webpage);
         //shareSdk.ShowPlatformList(null, content, 100, 100);                      //弹出分享菜单选择列表
-        shareSdk.ShowShareContentEditor(PlatformType.QQ, content);                 //指定平台直接分享
+        ssdk.ShowShareContentEditor(PlatformType.QQ, content);                 //指定平台直接分享
     }
 
     // 分享结果回调
@@ -58,7 +58,7 @@ public class ShareDemo : MonoBehaviour
         if (state == ResponseState.Success) //成功
         {
             message.text = "share result :";
-            message.text = MiniJSON2.jsonEncode(result);
+            message.text = MiniJSON.jsonEncode(result);
         }
         else if (state == ResponseState.Fail) //失败
         {
@@ -77,7 +77,7 @@ public class ShareDemo : MonoBehaviour
     public void OnAuthClick()
     {
         //请求QQ授权，请求这个授权是为了获取用户信息来第三方登录
-        shareSdk.Authorize(PlatformType.QQ);
+        ssdk.Authorize(PlatformType.QQ);
     }
 
     //授权结果回调
@@ -86,7 +86,7 @@ public class ShareDemo : MonoBehaviour
         if (state == ResponseState.Success)
         {
             message.text = "authorize success !";
-            shareSdk.GetUserInfo(type); //授权成功的话，获取用户信息
+            ssdk.GetUserInfo(type); //授权成功的话，获取用户信息
         }
         else if (state == ResponseState.Fail)
         {
@@ -107,16 +107,18 @@ public class ShareDemo : MonoBehaviour
             switch (type)
             {
                 case PlatformType.QQ:
-                    message.text = (MiniJSON2.jsonEncode(result));  //Json
-
+                    Hashtable info = ssdk.GetAuthInfo(PlatformType.QQ);
+                    authInfo = JsonUtility.FromJson<AuthInfo>(MiniJSON.jsonEncode(info));
                     //完整的json内容作为string传入，得到整个UserInfo结构/类
-                    qqUser = JsonUtility.FromJson<QQUser>(MiniJSON2.jsonEncode(result));
-                    message.text = qqUser.nickname;
-                    Debug.Log("nikename : " + qqUser.nickname);
-                    //php数据库交互，如果数据库里没有，新建用户，→登陆。
-                    //如果有，→登陆。
-                    //ToDo it...
-                    QQReg();
+                    //qqUser = JsonUtility.FromJson<QQUser>(MiniJSON.jsonEncode(result));
+                    QQRegist();
+                    break;
+                case PlatformType.WeChat:
+                    //TODO...
+                    Debug.Log("WeChat " + MiniJSON.jsonEncode(result));
+                    break;
+                case PlatformType.SinaWeibo:
+                    //TODO...
                     break;
             }
         }
@@ -154,6 +156,20 @@ public class ShareDemo : MonoBehaviour
         public string figureurl_qq_2;
         public string vip;
         public string is_yellow_vip;
+    }
+
+    struct AuthInfo //QQ用户信息结构体
+    {
+        public string openID; //同一个QQ号码在不同的应用中有不同的OpenID。//""
+        public int expiresIn; //7776000
+        public string userGender; //m
+        public string tokenSecret; //""
+        public string userID; //9629982F7B21F80465B028970A9D0123
+        public string unionID; //""
+        public int expiresTime; //-1
+        public string userName; //せつ うとう
+        public string token; //D85D6F250385F69C614A157166F4A05C
+        public string userIcon; //http://q.qlogo.cn/qqapp/1105917797/9629982F7B21F80465B028970A9D0123/40
     }
 
     //MD5加密

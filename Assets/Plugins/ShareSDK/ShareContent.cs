@@ -376,7 +376,7 @@ namespace cn.sharesdk.unity3d
 			if (customizeShareParams.Count > 0) {
 				shareParams["customizeShareParams"] = customizeShareParams;
 			}
-			String jsonStr = MiniJSON2.jsonEncode (shareParams);
+			String jsonStr = MiniJSON.jsonEncode (shareParams);
 			Debug.Log("ParseShareParams  ===>>> " + jsonStr );
 			return jsonStr;
 		}
@@ -385,7 +385,7 @@ namespace cn.sharesdk.unity3d
 			if (customizeShareParams.Count > 0) {
 				shareParams["customizeShareParams"] = customizeShareParams;
 			}
-			String jsonStr = MiniJSON2.jsonEncode (shareParams);
+			String jsonStr = MiniJSON.jsonEncode (shareParams);
 			Debug.Log("ParseShareParams  ===>>> " + jsonStr );
 			return shareParams;
 		}

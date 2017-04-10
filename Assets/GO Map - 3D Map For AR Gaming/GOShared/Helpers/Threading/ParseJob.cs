@@ -1,4 +1,4 @@
-﻿using MiniJSON;
+﻿using GoJSON;
 using UnityEngine;
 
 public class ParseJob : ThreadedJob
