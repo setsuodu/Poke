@@ -79,3 +79,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+.vs/Pokemon/v15/Server/sqlite3/db.lock
+*.ide
+.vs/Pokemon/v15/Server/sqlite3/storage.ide-shm

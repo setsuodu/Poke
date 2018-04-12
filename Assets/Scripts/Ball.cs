@@ -39,7 +39,7 @@ public class Ball : MonoBehaviour
 		//initalize gradually jump coroutine
 		jumpCoroutine = GraduallyJumpCoroutine (0.3f);
 		
-		childBall = transform.FindChild ("Ball");
+		childBall = transform.Find ("Ball");
 		
 		StartCoroutine (jumpCoroutine);
 

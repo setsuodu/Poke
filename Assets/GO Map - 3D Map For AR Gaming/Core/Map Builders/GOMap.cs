@@ -206,7 +206,7 @@ namespace GoMap
 
 		public void dropPin(double lat, double lng, GameObject go) {
 
-			Transform pins = transform.FindChild ("Pins");
+			Transform pins = transform.Find ("Pins");
 			if (pins == null) {
 				pins = new GameObject ("Pins").transform;
 				pins.parent = transform;

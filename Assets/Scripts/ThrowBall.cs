@@ -278,7 +278,7 @@ public class ThrowBall : MonoBehaviour
 		isGettingDirection = true;
 		currentBall.SendMessage ("SetIsThrowed", true, SendMessageOptions.RequireReceiver);
 		
-		currentBallChild = currentBall.transform.FindChild ("Ball");
+		currentBallChild = currentBall.transform.Find ("Ball");
 
 		StartCoroutine (GettingDirection ());
 	}

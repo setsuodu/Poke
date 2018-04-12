@@ -494,7 +494,7 @@ namespace GoMap
 				float d = Mathf.Abs(Vector3.Distance (center, c));
 				if (d <= mdc) {
 					string n = "Container " + c.x + " "+c.y+ " "+c.z;
-					Transform child = parent.transform.FindChild (n);
+					Transform child = parent.transform.Find (n);
 					if (child != null)
 						return child.gameObject;
 				}
